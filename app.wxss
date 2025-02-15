@@ -1,10 +1,56 @@
 /**app.wxss**/
 .container {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 200rpx 0;
-  box-sizing: border-box;
+  min-height: 100vh;
+  background-color: #F5F5F5;
+}
+
+/* 文字样式 */
+.text-primary {
+  color: #333333;
+  font-size: 32rpx;
+}
+
+.text-secondary {
+  color: #999999;
+  font-size: 28rpx;
+}
+
+/* 按钮样式 */
+.btn-primary {
+  background-color: #4A90E2;
+  color: #FFFFFF;
+  padding: 20rpx 40rpx;
+  border-radius: 8rpx;
+}
+
+.btn-warning {
+  background-color: #FF6B6B;
+  color: #FFFFFF;
+}
+
+/* 卡片样式 */
+.card {
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin: 20rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+page {
+  --primary-color: #4A90E2;
+  --danger-color: #FF5252;
+  --success-color: #4CAF50;
+  --warning-color: #FF6B6B;
+  --background-color: #F5F5F5;
+  --text-color: #333333;
+  --text-color-light: #999999;
+  
+  background-color: var(--background-color);
+}
+
+/* 自定义 Vant 主题色 */
+.van-button--primary {
+  background-color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
 } 

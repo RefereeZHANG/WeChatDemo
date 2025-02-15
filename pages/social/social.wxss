@@ -1,0 +1,184 @@
+.container {
+  background: #F5F5F5;
+  min-height: 100vh;
+  padding: 30rpx;
+}
+
+.section-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  margin-bottom: 30rpx;
+  color: #333333;
+}
+
+/* 账本卡片样式 */
+.book-card {
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.book-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.book-name {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333333;
+}
+
+.book-status {
+  font-size: 24rpx;
+  color: #4CAF50;
+}
+
+.book-status.pending {
+  color: #FF6B6B;
+}
+
+/* 成员头像组样式 */
+.book-members {
+  display: flex;
+  align-items: center;
+  margin: 20rpx 0;
+}
+
+.avatar-group {
+  display: flex;
+  align-items: center;
+}
+
+.member-avatar {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  border: 4rpx solid #FFFFFF;
+  margin-left: -15rpx;
+}
+
+.member-avatar:first-child {
+  margin-left: 0;
+}
+
+.more-members {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  background: #F0F0F0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24rpx;
+  color: #999999;
+  margin-left: -15rpx;
+}
+
+.member-count {
+  font-size: 24rpx;
+  color: #999999;
+  margin-left: 20rpx;
+}
+
+/* 账本底部样式 */
+.book-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20rpx;
+  padding-top: 20rpx;
+  border-top: 1rpx solid #F5F5F5;
+}
+
+.settlement-amount {
+  font-size: 28rpx;
+  color: #FF6B6B;
+  font-weight: bold;
+}
+
+.btn-settle {
+  background: #4A90E2;
+  color: #FFFFFF;
+  font-size: 26rpx;
+  padding: 10rpx 30rpx;
+  border-radius: 30rpx;
+}
+
+/* 创建按钮样式 */
+.btn-create {
+  position: fixed;
+  bottom: 40rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #4A90E2;
+  color: #FFFFFF;
+  font-size: 32rpx;
+  padding: 20rpx 60rpx;
+  border-radius: 40rpx;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4rpx 20rpx rgba(74, 144, 226, 0.3);
+}
+
+.btn-create image {
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 10rpx;
+}
+
+/* 分享面板样式 */
+.share-panel {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #FFFFFF;
+  border-radius: 32rpx 32rpx 0 0;
+  padding: 30rpx;
+}
+
+.share-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
+
+.share-content {
+  text-align: center;
+}
+
+.share-poster {
+  width: 600rpx;
+  height: 800rpx;
+  margin: 20rpx auto;
+  border-radius: 16rpx;
+}
+
+.share-actions {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 30rpx;
+}
+
+.btn-share-wechat,
+.btn-save-image {
+  flex: 1;
+  margin: 0 20rpx;
+  border-radius: 40rpx;
+}
+
+.btn-share-wechat {
+  background: #4A90E2;
+  color: #FFFFFF;
+}
+
+.btn-save-image {
+  background: #F5F5F5;
+  color: #333333;
+} 

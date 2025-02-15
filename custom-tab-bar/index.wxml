@@ -1,0 +1,5 @@
+<van-tabbar active="{{ active }}" bind:change="onChange" active-color="#4A90E2" inactive-color="#999999" placeholder>
+  <van-tabbar-item wx:for="{{ navList }}" wx:key="text" icon="{{ item.icon }}">
+    {{ item.text }}
+  </van-tabbar-item>
+</van-tabbar>

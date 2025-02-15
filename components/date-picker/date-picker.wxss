@@ -1,0 +1,76 @@
+.date-picker {
+  background: #FFFFFF;
+  padding: 20rpx;
+  border-radius: 16rpx;
+}
+
+.picker-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 0;
+}
+
+.arrow {
+  width: 60rpx;
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.arrow image {
+  width: 32rpx;
+  height: 32rpx;
+}
+
+.current-date {
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #F5F5F5;
+}
+
+.weekdays text {
+  font-size: 24rpx;
+  color: #999999;
+}
+
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10rpx;
+  padding: 20rpx 0;
+}
+
+.day-item {
+  text-align: center;
+  padding: 10rpx;
+  position: relative;
+}
+
+.day-item.current {
+  color: #333333;
+}
+
+.day-item.selected {
+  background: #4A90E2;
+  color: #FFFFFF;
+  border-radius: 8rpx;
+}
+
+.day-amount {
+  font-size: 20rpx;
+  color: #999999;
+  margin-top: 4rpx;
+}
+
+.day-item.selected .day-amount {
+  color: #FFFFFF;
+} 

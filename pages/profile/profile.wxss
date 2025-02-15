@@ -1,0 +1,207 @@
+.container {
+  min-height: 100vh;
+  background: #F5F5F5;
+}
+
+/* 头部样式 */
+.profile-header {
+  background: linear-gradient(180deg, #4A90E2 0%, #357ABD 100%);
+  padding: 40rpx 30rpx;
+  color: #FFFFFF;
+  border-radius: 0 0 40rpx 40rpx;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 40rpx;
+}
+
+.avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 60rpx;
+  border: 4rpx solid #FFFFFF;
+}
+
+.user-detail {
+  margin-left: 30rpx;
+}
+
+.nickname {
+  font-size: 36rpx;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+}
+
+.streak-info {
+  display: flex;
+  align-items: center;
+  font-size: 24rpx;
+  opacity: 0.9;
+}
+
+.streak-icon {
+  width: 28rpx;
+  height: 28rpx;
+  margin-right: 8rpx;
+}
+
+/* 数据概览样式 */
+.stats-overview {
+  display: flex;
+  justify-content: space-around;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 16rpx;
+  padding: 20rpx 0;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 40rpx;
+  font-weight: bold;
+  margin-bottom: 4rpx;
+}
+
+.stat-label {
+  font-size: 24rpx;
+  opacity: 0.9;
+}
+
+.stat-divider {
+  width: 2rpx;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* 成就系统样式 */
+.achievements-section {
+  margin: 30rpx;
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  padding: 30rpx;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333333;
+}
+
+.achievement-progress {
+  font-size: 24rpx;
+  color: #999999;
+}
+
+.achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20rpx;
+}
+
+.achievement-item {
+  text-align: center;
+  opacity: 0.5;
+}
+
+.achievement-item.unlocked {
+  opacity: 1;
+}
+
+.achievement-icon {
+  width: 80rpx;
+  height: 80rpx;
+  margin-bottom: 10rpx;
+}
+
+.achievement-name {
+  font-size: 24rpx;
+  color: #666666;
+}
+
+/* 虚拟宠物样式 */
+.pet-section {
+  margin: 30rpx;
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  padding: 30rpx;
+}
+
+.pet-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.pet-image {
+  width: 120rpx;
+  height: 120rpx;
+  margin-right: 20rpx;
+}
+
+.pet-info {
+  flex: 1;
+}
+
+.pet-name {
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+}
+
+.pet-mood {
+  display: flex;
+  align-items: center;
+}
+
+.mood-star {
+  width: 24rpx;
+  height: 24rpx;
+  margin-right: 4rpx;
+}
+
+.pet-message {
+  font-size: 28rpx;
+  color: #666666;
+  font-style: italic;
+}
+
+/* 功能列表样式 */
+.function-list {
+  margin: 30rpx;
+  background: #FFFFFF;
+  border-radius: 16rpx;
+}
+
+.function-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30rpx;
+  border-bottom: 1rpx solid #F5F5F5;
+}
+
+.function-left {
+  display: flex;
+  align-items: center;
+}
+
+.function-icon {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 20rpx;
+}
+
+.arrow-right {
+  width: 32rpx;
+  height: 32rpx;
+} 

@@ -1,0 +1,50 @@
+<view class="container">
+  <!-- 多人账本列表 -->
+  <van-cell-group>
+    <van-cell
+      wx:for="{{ accounts }}"
+      wx:key="id"
+      title="{{ item.name }}"
+      label="待结算 ¥{{ item.pending }}"
+      is-link
+    >
+      <view slot="icon" class="account-avatars">
+        <!-- 成员头像列表 -->
+      </view>
+    </van-cell>
+  </van-cell-group>
+
+  <van-button 
+    type="primary" 
+    block 
+    custom-style="margin: 16px"
+    bind:click="createAccount"
+  >
+    创建新账本
+  </van-button>
+
+  <!-- 账单分享面板 -->
+  <view class="share-panel" wx:if="{{showSharePanel}}">
+    <view class="share-header">
+      <text>分享账单</text>
+      <image src="/images/close.png" bindtap="closeSharePanel" />
+    </view>
+    
+    <view class="share-content">
+      <image class="share-poster" src="{{currentBill.posterUrl}}" />
+      <view class="share-actions">
+        <button class="btn-share-wechat" open-type="share">
+          分享给好友
+        </button>
+        <button class="btn-save-image" bindtap="saveImage">
+          保存图片
+        </button>
+      </view>
+    </view>
+  </view>
+</view> 
+
+<custom-tab-bar id="footer-nav-bar-id"
+    navList="{{footerNavList}}"
+    bind:onFooterNavChange="onFooterNavChange">
+</custom-tab-bar>

@@ -1,0 +1,81 @@
+<view class="bill-input-panel {{show ? 'show' : ''}}">
+  <view class="mask" bindtap="onClose"></view>
+  <view class="panel-content">
+    <!-- 顶部栏 -->
+    <view class="panel-header">
+      <text>记一笔</text>
+      <image class="close-icon" src="/images/close.png" bindtap="onClose" />
+    </view>
+
+    <!-- 类型选择 -->
+    <view class="type-selector">
+      <view 
+        class="type-item {{billType === 'expense' ? 'active' : ''}}"
+        bindtap="switchType"
+        data-type="expense"
+      >支出</view>
+      <view 
+        class="type-item {{billType === 'income' ? 'active' : ''}}"
+        bindtap="switchType"
+        data-type="income"
+      >收入</view>
+    </view>
+
+    <!-- 金额输入 -->
+    <view class="amount-input">
+      <text class="currency">¥</text>
+      <input 
+        type="digit"
+        value="{{amount}}"
+        bindinput="onAmountInput"
+        focus="{{show}}"
+        placeholder="0.00"
+      />
+    </view>
+
+    <!-- 分类选择 -->
+    <scroll-view class="category-list" scroll-x>
+      <view 
+        class="category-item {{selectedCategory === item.id ? 'active' : ''}}"
+        wx:for="{{categories}}"
+        wx:key="id"
+        bindtap="selectCategory"
+        data-category="{{item.id}}"
+      >
+        <image class="category-icon" src="{{item.icon}}" />
+        <text>{{item.name}}</text>
+      </view>
+    </scroll-view>
+
+    <!-- 备注输入 -->
+    <view class="note-input">
+      <input 
+        type="text"
+        value="{{note}}"
+        bindinput="onNoteInput"
+        placeholder="添加备注"
+      />
+    </view>
+
+    <!-- 日期选择 -->
+    <view class="date-picker">
+      <picker 
+        mode="date"
+        value="{{date}}"
+        bindchange="onDateChange"
+      >
+        <view class="picker-content">
+          <image class="calendar-icon" src="/images/calendar.png" />
+          <text>{{date}}</text>
+        </view>
+      </picker>
+    </view>
+
+    <!-- 保存按钮 -->
+    <button 
+      class="save-btn {{canSave ? '' : 'disabled'}}"
+      bindtap="onSave"
+      disabled="{{!canSave}}"
+    >保存</button>
+  </view>
+</view> 

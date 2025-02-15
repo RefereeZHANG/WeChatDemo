@@ -1,0 +1,17 @@
+<view class="bill-item" bindtap="onTap" bindlongpress="onLongPress">
+  <view class="category-icon">
+    <image src="{{categoryIcon}}" />
+  </view>
+  <view class="bill-info">
+    <view class="bill-main">
+      <text class="category-name">{{bill.category}}</text>
+      <text class="amount {{bill.type === 'expense' ? 'expense' : 'income'}}">
+        {{bill.type === 'expense' ? '-' : '+'}}¥{{bill.amount}}
+      </text>
+    </view>
+    <view class="bill-sub">
+      <text class="note">{{bill.note || '无备注'}}</text>
+      <text class="time">{{bill.date}}</text>
+    </view>
+  </view>
+</view> 

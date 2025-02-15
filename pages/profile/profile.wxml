@@ -1,0 +1,61 @@
+<view class="container">
+  <!-- 用户信息头部 -->
+  <view class="user-header">
+    <van-cell
+      title="{{ userInfo.nickName }}"
+      label="已坚持记账28天"
+      size="large"
+      center
+    >
+      <van-image
+        slot="icon"
+        round
+        width="64"
+        height="64"
+        src="{{ userInfo.avatarUrl }}"
+      />
+    </van-cell>
+  </view>
+
+  <!-- 成就系统 -->
+  <van-grid column-num="4">
+    <van-grid-item
+      wx:for="{{ medals }}"
+      wx:key="id"
+      icon="{{ item.icon }}"
+      text="{{ item.name }}"
+    />
+  </van-grid>
+
+  <!-- 虚拟宠物 -->
+  <view class="pet-section">
+    <view class="pet-container">
+      <image class="pet-image" src="{{pet.image}}" />
+      <view class="pet-info">
+        <text class="pet-name">{{pet.name}}</text>
+        <view class="pet-mood">
+          <text>心情：</text>
+          <image 
+            wx:for="{{pet.moodStars}}" 
+            wx:key="index"
+            src="/images/star.png"
+            class="mood-star"
+          />
+        </view>
+      </view>
+    </view>
+    <text class="pet-message">{{pet.message}}</text>
+  </view>
+
+  <!-- 功能列表 -->
+  <van-cell-group title="功能">
+    <van-cell title="设置" is-link icon="setting-o" />
+    <van-cell title="帮助中心" is-link icon="question-o" />
+    <van-cell title="数据导出" is-link icon="down" />
+  </van-cell-group>
+</view> 
+
+<custom-tab-bar id="footer-nav-bar-id"
+    navList="{{footerNavList}}"
+    bind:onFooterNavChange="onFooterNavChange">
+</custom-tab-bar>

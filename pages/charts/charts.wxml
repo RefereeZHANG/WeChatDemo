@@ -1,0 +1,37 @@
+<van-tabs active="{{ active }}" bind:change="onChange">
+  <van-tab title="月度">
+    <view class="chart-container">
+      <van-circle
+        value="{{ monthlyPercentage }}"
+        color="#4A90E2"
+        layer-color="#eee"
+        text="预算使用率"
+        size="150"
+      />
+    </view>
+  </van-tab>
+  
+  <van-tab title="分类">
+    <!-- 这里需要引入自定义图表组件，如 ec-canvas -->
+    <view class="chart-container">
+      <pie-chart class="pie-chart" />
+    </view>
+  </van-tab>
+  
+  <van-tab title="趋势">
+    <view class="chart-container">
+      <line-chart class="line-chart" />
+    </view>
+  </van-tab>
+</van-tabs>
+
+<!-- 数据摘要卡片 -->
+<van-cell-group title="数据摘要">
+  <van-cell title="本月最高支出" value="餐饮 ¥1200" />
+  <van-cell title="环比变化" value="较上月减少10%" />
+</van-cell-group> 
+
+<custom-tab-bar id="footer-nav-bar-id"
+    navList="{{footerNavList}}"
+    bind:onFooterNavChange="onFooterNavChange">
+</custom-tab-bar>

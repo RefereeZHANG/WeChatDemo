@@ -1,0 +1,134 @@
+.container {
+  background: #F5F5F5;
+  min-height: 100vh;
+}
+
+/* 选项卡样式 */
+.tab-bar {
+  display: flex;
+  background: #FFFFFF;
+  padding: 20rpx 30rpx;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.tab-item {
+  flex: 1;
+  text-align: center;
+  padding: 20rpx 0;
+  font-size: 28rpx;
+  color: #999999;
+  position: relative;
+}
+
+.tab-item.active {
+  color: #4A90E2;
+  font-weight: bold;
+}
+
+.tab-item.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40rpx;
+  height: 4rpx;
+  background: #4A90E2;
+  border-radius: 2rpx;
+}
+
+/* 图表区域样式 */
+.chart-section {
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  margin: 20rpx;
+  padding: 30rpx;
+}
+
+.chart-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-bottom: 30rpx;
+}
+
+/* 环形图样式 */
+.budget-ring {
+  position: relative;
+  width: 400rpx;
+  height: 400rpx;
+  margin: 0 auto;
+}
+
+.ring-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.ring-center .amount {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #333333;
+}
+
+.ring-center .label {
+  font-size: 24rpx;
+  color: #999999;
+}
+
+/* 分类列表样式 */
+.category-list {
+  margin-top: 30rpx;
+}
+
+.category-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #F5F5F5;
+}
+
+.category-info {
+  display: flex;
+  align-items: center;
+}
+
+.color-dot {
+  width: 20rpx;
+  height: 20rpx;
+  border-radius: 50%;
+  margin-right: 16rpx;
+}
+
+.category-amount {
+  color: #333333;
+  font-weight: bold;
+}
+
+/* 趋势卡片样式 */
+.trend-card {
+  background: #F8F9FA;
+  border-radius: 12rpx;
+  padding: 20rpx;
+  text-align: center;
+}
+
+.trend-card .value {
+  font-size: 36rpx;
+  font-weight: bold;
+  margin: 10rpx 0;
+}
+
+.trend-card .value.decrease {
+  color: #4CAF50;
+}
+
+.trend-card .desc {
+  font-size: 24rpx;
+  color: #999999;
+} 
