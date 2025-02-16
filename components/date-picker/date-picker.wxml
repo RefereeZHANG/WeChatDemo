@@ -1,0 +1,32 @@
+<view class="date-picker">
+  <view class="picker-header">
+    <view class="arrow" bindtap="prevMonth">
+      <image src="/images/arrow-left.png" />
+    </view>
+    <view class="current-date" bindtap="showYearMonth">
+      {{year}}年{{month}}月
+    </view>
+    <view class="arrow" bindtap="nextMonth">
+      <image src="/images/arrow-right.png" />
+    </view>
+  </view>
+  
+  <view class="weekdays">
+    <text wx:for="{{weekdays}}" wx:key="*this">{{item}}</text>
+  </view>
+  
+  <view class="days">
+    <view 
+      wx:for="{{days}}" 
+      wx:key="date"
+      class="day-item {{item.current ? 'current' : ''}} {{item.selected ? 'selected' : ''}}"
+      data-date="{{item.date}}"
+      bindtap="selectDate"
+    >
+      <text>{{item.day}}</text>
+      <view class="day-amount" wx:if="{{item.amount}}">
+        {{item.amount > 0 ? '+' : ''}}{{item.amount}}
+      </view>
+    </view>
+  </view>
+</view> 

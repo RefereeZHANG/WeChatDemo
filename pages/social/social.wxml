@@ -1,0 +1,136 @@
+<view class="container">
+  <!-- 顶部统计 -->
+  <view class="stats-card">
+    <view class="stats-item">
+      <text class="num">{{ groupBooks.length || 0 }}</text>
+      <text class="label">我的账本</text>
+    </view>
+    <view class="stats-item">
+      <text class="num">{{ pendingSettlement || 0 }}</text>
+      <text class="label">待结算</text>
+    </view>
+    <view class="stats-item">
+      <text class="num">¥{{ totalPending || '0.00' }}</text>
+      <text class="label">待收待付</text>
+    </view>
+  </view>
+
+  <!-- 账本列表 -->
+  <view class="book-section">
+    <view class="section-header">
+      <text class="section-title">多人账本</text>
+      <view class="filter-tags">
+        <van-tag 
+          plain 
+          type="primary" 
+          color="#424874"
+          class="{{ currentFilter === 'all' ? 'active' : '' }}"
+          bindtap="switchFilter"
+          data-type="all"
+        >全部</van-tag>
+        <van-tag 
+          plain 
+          type="primary" 
+          color="#424874"
+          class="{{ currentFilter === 'pending' ? 'active' : '' }}"
+          bindtap="switchFilter"
+          data-type="pending"
+        >待结算</van-tag>
+      </view>
+    </view>
+
+    <!-- 账本列表 -->
+    <view class="book-list" wx:if="{{ groupBooks.length > 0 }}">
+      <view class="book-card" wx:for="{{ groupBooks }}" wx:key="id">
+        <view class="book-header">
+          <view class="book-info">
+            <text class="book-name">{{ item.name }}</text>
+            <van-tag type="{{ item.status === 'pending' ? 'warning' : 'success' }}" size="medium">
+              {{ item.statusText }}
+            </van-tag>
+          </view>
+          <view class="book-amount" wx:if="{{ item.status === 'pending' }}">
+            <text class="amount-label">待结算金额</text>
+            <text class="amount-value">¥{{ item.pendingAmount }}</text>
+          </view>
+        </view>
+
+        <view class="book-members">
+          <view class="member-avatars">
+            <image 
+              class="member-avatar" 
+              wx:for="{{ item.members }}" 
+              wx:key="id"
+              src="{{ item.avatar }}"
+            />
+            <view class="add-member" bindtap="addMember" data-book-id="{{ item.id }}">
+              <van-icon name="plus" size="24px" color="#A6B1E1"/>
+            </view>
+          </view>
+        </view>
+
+        <view class="book-actions">
+          <button class="action-btn" bindtap="showSharePanel" data-book-id="{{ item.id }}">
+            <van-icon name="share-o" size="18px" color="#424874"/>
+            <text>分享</text>
+          </button>
+          <button class="action-btn" bindtap="navigateToDetail" data-book-id="{{ item.id }}">
+            <van-icon name="bar-chart-o" size="18px" color="#424874"/>
+            <text>明细</text>
+          </button>
+        </view>
+      </view>
+    </view>
+
+    <!-- 空状态 -->
+    <van-empty 
+      wx:else 
+      description="还没有多人账本" 
+      image="https://img.yzcdn.cn/vant/custom-empty-image.png"
+    >
+      <van-button 
+        round 
+        type="primary" 
+        color="#424874"
+        bindtap="createNewBook"
+      >创建账本</van-button>
+    </van-empty>
+  </view>
+
+  <!-- 创建账本按钮 -->
+  <view class="btn-create" bindtap="createNewBook" wx:if="{{ groupBooks.length > 0 }}">
+    <van-icon name="plus" size="24px" color="#F4EEFF"/>
+    <text>创建账本</text>
+  </view>
+
+  <!-- 分享面板 -->
+  <van-popup
+    show="{{ showSharePanel }}"
+    round
+    position="bottom"
+    custom-style="min-height: 40%"
+    bind:close="closeSharePanel"
+  >
+    <view class="share-panel">
+      <view class="share-header">
+        <text class="share-title">分享账本</text>
+        <van-icon name="cross" bindtap="closeSharePanel"/>
+      </view>
+      <view class="share-content">
+        <image class="share-qrcode" src="{{ currentBook.qrCode }}" mode="aspectFit"/>
+        <view class="share-actions">
+          <button class="btn-share-wechat" open-type="share">
+            <van-icon name="wechat" size="24px"/>
+            <text>分享给好友</text>
+          </button>
+          <button class="btn-save-image" bindtap="saveImage">
+            <van-icon name="photo-o" size="24px"/>
+            <text>保存图片</text>
+          </button>
+        </view>
+      </view>
+    </view>
+  </van-popup>
+</view>
+
+<custom-tab-bar id="footer-nav-bar-id" />

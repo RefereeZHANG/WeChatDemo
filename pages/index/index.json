@@ -1,4 +1,8 @@
 {
   "usingComponents": {
+    "bill-input": "../../components/bill-input/bill-input",
+    "budget-progress": "../../components/budget-progress/budget-progress",
+    "bill-item": "../../components/bill-item/bill-item",
+    "date-picker": "../../components/date-picker/date-picker"
   }
 }
