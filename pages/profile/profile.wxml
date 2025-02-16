@@ -47,7 +47,13 @@
       </view>
     </view>
     <view class="pet-content">
-      <image class="pet-image" src="{{ pet.image }}" mode="aspectFit"/>
+      <view class="pet-image-container">
+        <image style="position: relative; left: 21rpx; top: 21rpx" 
+          class="pet-image" 
+          src="/images/pet/normal.png" 
+          mode="aspectFill"
+        />
+      </view>
       <view class="speech-bubble">
         <text>{{ pet.message }}</text>
       </view>
@@ -64,7 +70,7 @@
       <view class="achievement-item {{ item.unlocked ? 'unlocked' : '' }}" 
             wx:for="{{ achievements }}" 
             wx:key="id">
-        <image class="achievement-icon" src="{{ item.icon }}"/>
+        <van-icon name="{{ item.icon }}" size="60rpx" color="{{ item.unlocked ? '#424874' : '#A6B1E1' }}"/>
         <text class="achievement-name">{{ item.name }}</text>
       </view>
     </view>
@@ -78,7 +84,7 @@
           bindtap="navigateToFunction"
           data-url="{{ item.url }}">
       <view class="function-left">
-        <image class="function-icon" src="{{ item.icon }}"/>
+        <van-icon name="{{ item.icon }}" size="40rpx" color="#424874" class="function-icon"/>
         <text>{{ item.name }}</text>
       </view>
       <van-icon name="arrow" color="#A6B1E1"/>

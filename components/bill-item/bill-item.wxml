@@ -1,6 +1,6 @@
 <view class="bill-item" bindtap="onTap" bindlongpress="onLongPress">
   <view class="category-icon">
-    <image src="{{categoryIcon}}" />
+    <van-icon name="{{categoryIcon}}" size="40rpx" color="#424874" />
   </view>
   <view class="bill-info">
     <view class="bill-main">

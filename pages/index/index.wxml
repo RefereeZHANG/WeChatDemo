@@ -13,7 +13,7 @@
     <view class="budget-title">本月预算</view>
     <view class="budget-circle">
       <van-circle
-        value="{{ budgetPercentage }}"
+        value="{{ Number(budgetPercentage) || 0 }}"
         color="#424874"
         layer-color="#DCD6F7"
         text="剩余预算\n¥3000"
@@ -48,9 +48,16 @@
           label="{{ item.note }}"
           value="{{ item.amount }}"
           value-class="{{ item.type === 'expense' ? 'expense' : 'income' }}"
-          icon="{{ item.icon }}"
           custom-class="bill-item"
-        />
+        >
+          <view slot="icon" class="category-icon">
+            <van-icon 
+              name="{{ categoryIconMap[item.category] || 'apps-o' }}"
+              size="40rpx"
+              color="#424874"
+            />
+          </view>
+        </van-cell>
         <view slot="right" class="delete-btn">删除</view>
       </van-swipe-cell>
     </view>

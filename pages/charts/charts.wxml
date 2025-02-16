@@ -1,9 +1,13 @@
 <view class="container">
   <!-- 顶部标签页 -->
-  <van-tabs active="{{ currentTab }}" bind:change="onTabChange" sticky>
+  <van-tabs 
+    active="{{ currentTab }}" 
+    bind:change="onTabChange" 
+    bind:tap="handleTabTap"
+    sticky>
     <van-tab title="月度概览">
       <!-- 月度预算环形图 -->
-      <view class="chart-section">
+      <view class="chart-section" catch:tap="handleChartTap">
         <view class="chart-title">预算使用情况</view>
         <view class="budget-ring">
           <van-circle
@@ -29,7 +33,7 @@
       </view>
 
       <!-- 月度趋势卡片 -->
-      <view class="chart-section">
+      <view class="chart-section" catch:tap="handleChartTap">
         <view class="chart-title">消费趋势</view>
         <view class="trend-cards">
           <view class="trend-card">
@@ -48,7 +52,7 @@
 
     <van-tab title="支出分类">
       <!-- 分类饼图 -->
-      <view class="chart-section">
+      <view class="chart-section" catch:tap="handleChartTap">
         <view class="chart-title">支出分布</view>
         <view class="pie-container">
           <!-- 这里需要集成图表组件 -->
@@ -68,7 +72,7 @@
 
     <van-tab title="收支趋势">
       <!-- 趋势图表 -->
-      <view class="chart-section">
+      <view class="chart-section" catch:tap="handleChartTap">
         <view class="chart-title">收支走势</view>
         <view class="trend-chart">
           <!-- 这里需要集成图表组件 -->

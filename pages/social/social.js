@@ -10,9 +10,9 @@ Page({
         statusText: '待结算',
         pendingAmount: '200.00',
         members: [
-          { id: 1, avatar: '/images/avatars/avatar1.png' },
-          { id: 2, avatar: '/images/avatars/avatar2.png' },
-          { id: 3, avatar: '/images/avatars/avatar3.png' }
+          { id: 1},
+          { id: 2},
+          { id: 3}
         ]
       },
       {
@@ -22,8 +22,8 @@ Page({
         statusText: '已结清',
         pendingAmount: '0.00',
         members: [
-          { id: 1, avatar: '/images/avatars/avatar1.png' },
-          { id: 4, avatar: '/images/avatars/avatar4.png' }
+          { id: 1},
+          { id: 4}
         ]
       }
     ],
