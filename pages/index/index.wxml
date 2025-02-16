@@ -1,50 +1,68 @@
 <!--index.wxml-->
-<van-nav-bar
-  title="2024年3月"
-  right-text="预算设置"
-  bind:click-right="onClickRight"
-/>
-
 <view class="container">
-  <!-- 顶部栏 -->
-  <view class="header">
-    <view class="month-selector">
-      <text>2024年3月</text>
-      <image class="icon-arrow" src="/images/arrow-down.png" />
+  <!-- 顶部导航 -->
+  <van-nav-bar
+    title="2024年3月"
+    right-text="预算设置"
+    bind:click-right="onClickRight"
+    custom-class="nav-bar"
+  />
+
+  <!-- 预算进度卡片 -->
+  <view class="budget-card">
+    <view class="budget-title">本月预算</view>
+    <view class="budget-circle">
+      <van-circle
+        value="{{ budgetPercentage }}"
+        color="#424874"
+        layer-color="#DCD6F7"
+        text="剩余预算\n¥3000"
+        text-color="#424874"
+        stroke-width="8"
+        size="180"
+      />
     </view>
-    <view class="budget-progress">
-      <view class="circle-progress">
-        <text class="remaining">剩余30%</text>
+    <view class="budget-info">
+      <view class="budget-item">
+        <text class="label">总预算</text>
+        <text class="value">¥5000</text>
+      </view>
+      <view class="budget-item">
+        <text class="label">已使用</text>
+        <text class="value expense">¥2000</text>
       </view>
     </view>
   </view>
 
-  <!-- 今日消费列表 -->
-  <view class="bill-list">
-    <van-swipe-cell right-width="{{ 65 }}" wx:for="{{ bills }}" wx:key="id">
-      <van-cell-group>
+  <!-- 今日账单卡片 -->
+  <view class="today-bills">
+    <view class="section-header">
+      <text class="section-title">今日账单</text>
+      <text class="today-total">支出 ¥128</text>
+    </view>
+    
+    <view class="bill-list">
+      <van-swipe-cell right-width="{{ 65 }}" wx:for="{{ bills }}" wx:key="id">
         <van-cell
           title="{{ item.category }}"
           label="{{ item.note }}"
           value="{{ item.amount }}"
           value-class="{{ item.type === 'expense' ? 'expense' : 'income' }}"
           icon="{{ item.icon }}"
+          custom-class="bill-item"
         />
-      </van-cell-group>
-      <view slot="right" class="delete-btn">删除</view>
-    </van-swipe-cell>
+        <view slot="right" class="delete-btn">删除</view>
+      </van-swipe-cell>
+    </view>
   </view>
 
-  <!-- 快速记账按钮 -->
-  <van-button
-    round
-    type="primary"
-    color="#FF6B6B"
-    custom-class="add-bill-btn"
-    icon="plus"
-    bind:click="showBillPopup"
-  />
+  <!-- 记账按钮 -->
+  <view class="btn-create" bindtap="showBillPopup">
+    <van-icon name="plus" size="24px" color="#F4EEFF"/>
+    <text>记一笔</text>
+  </view>
 
+  <!-- 记账弹窗 -->
   <bill-input 
     show="{{showBillInput}}" 
     bind:close="onBillInputClose"
@@ -52,34 +70,4 @@
   />
 </view>
 
-<!-- 预算进度 -->
-<view class="budget-circle">
-  <van-circle
-    value="{{ budgetPercentage }}"
-    color="#4A90E2"
-    text="剩余30%"
-    size="120"
-  />
-</view>
-
-<!-- 记账弹窗 -->
-<van-popup
-  show="{{ showBillPopup }}"
-  position="bottom"
-  custom-style="height: 50%"
-  bind:close="onClose"
->
-  <!-- 记账表单内容 -->
-  <van-field
-    model:value="{{ amount }}"
-    type="digit"
-    label="金额"
-    placeholder="请输入金额"
-  />
-  <!-- 其他表单内容 -->
-</van-popup>
-
-<custom-tab-bar id="footer-nav-bar-id"
-    navList="{{footerNavList}}"
-    bind:onFooterNavChange="onFooterNavChange">
-</custom-tab-bar>
+<custom-tab-bar id="footer-nav-bar-id" />

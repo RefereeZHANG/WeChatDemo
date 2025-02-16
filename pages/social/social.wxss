@@ -1,145 +1,225 @@
+page {
+  background-color: #F4EEFF;
+}
+
 .container {
-  background: #F5F5F5;
-  min-height: 100vh;
-  padding: 30rpx;
+  padding: 20rpx;
+  padding-bottom: 120rpx;
+  box-sizing: border-box;
+  width: 100%;
 }
 
-.section-title {
-  font-size: 36rpx;
-  font-weight: bold;
-  margin-bottom: 30rpx;
-  color: #333333;
-}
-
-/* 账本卡片样式 */
-.book-card {
+/* 统计卡片 */
+.stats-card {
+  display: flex;
+  justify-content: space-between;
   background: #FFFFFF;
-  border-radius: 16rpx;
-  padding: 30rpx;
-  margin-bottom: 30rpx;
-  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+  border-radius: 24rpx;
+  padding: 24rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 10rpx rgba(166, 177, 225, 0.2);
 }
 
-.book-header {
+.stats-item {
+  text-align: center;
+  flex: 1;
+  padding: 0 10rpx;
+}
+
+.stats-item .num {
+  display: block;
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #424874;
+  margin-bottom: 8rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.stats-item .label {
+  font-size: 24rpx;
+  color: #A6B1E1;
+  white-space: nowrap;
+}
+
+/* 账本列表 */
+.book-section {
+  background: #FFFFFF;
+  border-radius: 24rpx;
+  padding: 24rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 10rpx rgba(166, 177, 225, 0.2);
+}
+
+.section-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20rpx;
 }
 
-.book-name {
+.section-title {
   font-size: 32rpx;
   font-weight: bold;
-  color: #333333;
+  color: #424874;
 }
 
-.book-status {
-  font-size: 24rpx;
-  color: #4CAF50;
-}
-
-.book-status.pending {
-  color: #FF6B6B;
-}
-
-/* 成员头像组样式 */
-.book-members {
+.filter-tags {
   display: flex;
-  align-items: center;
-  margin: 20rpx 0;
+  gap: 8rpx;
+  flex-shrink: 0;
 }
 
-.avatar-group {
-  display: flex;
-  align-items: center;
-}
-
-.member-avatar {
-  width: 60rpx;
-  height: 60rpx;
-  border-radius: 50%;
-  border: 4rpx solid #FFFFFF;
-  margin-left: -15rpx;
-}
-
-.member-avatar:first-child {
-  margin-left: 0;
-}
-
-.more-members {
-  width: 60rpx;
-  height: 60rpx;
-  border-radius: 50%;
-  background: #F0F0F0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.filter-tags .van-tag {
+  padding: 6rpx 16rpx;
   font-size: 24rpx;
-  color: #999999;
-  margin-left: -15rpx;
 }
 
-.member-count {
-  font-size: 24rpx;
-  color: #999999;
-  margin-left: 20rpx;
+.filter-tags .active {
+  background: #424874 !important;
+  color: #F4EEFF !important;
 }
 
-/* 账本底部样式 */
-.book-footer {
+/* 账本卡片 */
+.book-card {
+  background: #F4EEFF;
+  border-radius: 16rpx;
+  padding: 20rpx;
+  margin-bottom: 16rpx;
+}
+
+.book-header {
+  margin-bottom: 16rpx;
+}
+
+.book-info {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 20rpx;
-  padding-top: 20rpx;
-  border-top: 1rpx solid #F5F5F5;
+  margin-bottom: 12rpx;
+  gap: 12rpx;
 }
 
-.settlement-amount {
+.book-name {
   font-size: 28rpx;
-  color: #FF6B6B;
   font-weight: bold;
+  color: #424874;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.btn-settle {
-  background: #4A90E2;
-  color: #FFFFFF;
-  font-size: 26rpx;
-  padding: 10rpx 30rpx;
-  border-radius: 30rpx;
+.book-amount {
+  display: flex;
+  align-items: baseline;
+  gap: 8rpx;
+  flex-wrap: nowrap;
 }
 
-/* 创建按钮样式 */
-.btn-create {
-  position: fixed;
-  bottom: 40rpx;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #4A90E2;
-  color: #FFFFFF;
-  font-size: 32rpx;
-  padding: 20rpx 60rpx;
-  border-radius: 40rpx;
+.amount-label {
+  font-size: 22rpx;
+  color: #A6B1E1;
+}
+
+.amount-value {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #424874;
+}
+
+/* 成员展示 */
+.book-members {
+  padding: 12rpx 0;
+  border-bottom: 1rpx solid rgba(166, 177, 225, 0.2);
+  margin-bottom: 16rpx;
+}
+
+.member-avatars {
   display: flex;
   align-items: center;
-  box-shadow: 0 4rpx 20rpx rgba(74, 144, 226, 0.3);
+  flex-wrap: nowrap;
 }
 
-.btn-create image {
-  width: 32rpx;
-  height: 32rpx;
-  margin-right: 10rpx;
+.member-avatar {
+  width: 56rpx;
+  height: 56rpx;
+  border-radius: 50%;
+  border: 2rpx solid #FFFFFF;
+  margin-right: -12rpx;
+  flex-shrink: 0;
 }
 
-/* 分享面板样式 */
-.share-panel {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
+.add-member {
+  width: 56rpx;
+  height: 56rpx;
+  border-radius: 50%;
   background: #FFFFFF;
-  border-radius: 32rpx 32rpx 0 0;
-  padding: 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 8rpx;
+  flex-shrink: 0;
+}
+
+/* 操作按钮 */
+.book-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12rpx;
+  padding-top: 4rpx;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  background: #FFFFFF;
+  border: none;
+  padding: 12rpx 24rpx;
+  border-radius: 32rpx;
+  font-size: 24rpx;
+  color: #424874;
+  min-width: auto;
+  line-height: 1.5;
+}
+
+.action-btn:after {
+  border: none;
+}
+
+.action-btn text {
+  white-space: nowrap;
+}
+
+/* 创建按钮 */
+.btn-create {
+  position: fixed;
+  bottom: 180rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #424874;
+  color: #F4EEFF;
+  font-size: 28rpx;
+  padding: 16rpx 48rpx;
+  border-radius: 36rpx;
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  box-shadow: 0 4rpx 20rpx rgba(66, 72, 116, 0.3);
+  z-index: 99;
+  white-space: nowrap;
+}
+
+/* 分享面板 */
+.share-panel {
+  padding: 24rpx;
+  padding-bottom: calc(24rpx + env(safe-area-inset-bottom));
+  max-height: 70vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
 }
 
 .share-header {
@@ -149,36 +229,67 @@
   margin-bottom: 30rpx;
 }
 
-.share-content {
-  text-align: center;
+.share-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #424874;
 }
 
-.share-poster {
-  width: 600rpx;
-  height: 800rpx;
-  margin: 20rpx auto;
-  border-radius: 16rpx;
+.share-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24rpx;
+  flex: 1;
+  padding-bottom: 24rpx;
+}
+
+.share-qrcode {
+  width: 260rpx;
+  height: 260rpx;
+  margin-bottom: 20rpx;
 }
 
 .share-actions {
   display: flex;
-  justify-content: space-around;
-  margin-top: 30rpx;
+  gap: 16rpx;
+  width: 100%;
+  padding: 0 20rpx 20rpx;
+  position: relative;
+  z-index: 99;
 }
 
 .btn-share-wechat,
 .btn-save-image {
   flex: 1;
-  margin: 0 20rpx;
-  border-radius: 40rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8rpx;
+  padding: 16rpx 0;
+  border-radius: 32rpx;
+  font-size: 26rpx;
+  min-width: auto;
+  line-height: 1.5;
+  /* margin-bottom: env(safe-area-inset-bottom); 安全距离*/
 }
 
 .btn-share-wechat {
-  background: #4A90E2;
-  color: #FFFFFF;
+  background: #424874;
+  color: #F4EEFF;
 }
 
 .btn-save-image {
-  background: #F5F5F5;
-  color: #333333;
+  background: #DCD6F7;
+  color: #424874;
+}
+
+/* 修改弹出层样式 */
+.van-popup {
+  max-height: 80vh !important;
+  overflow: hidden !important;
+}
+
+.van-popup--bottom {
+  padding-bottom: env(safe-area-inset-bottom) !important;
 } 

@@ -1,86 +1,116 @@
+page {
+  background-color: #F4EEFF;
+}
+
 .container {
-  background: #F5F5F5;
-  min-height: 100vh;
+  padding-bottom: 120rpx;
 }
 
-/* 选项卡样式 */
-.tab-bar {
-  display: flex;
-  background: #FFFFFF;
-  padding: 20rpx 30rpx;
-  position: sticky;
-  top: 0;
-  z-index: 100;
+/* Tab样式 */
+.van-tabs__wrap {
+  background: #FFFFFF !important;
+  border-radius: 24rpx 24rpx 0 0 !important;
+  margin: 20rpx 20rpx 0 !important;
 }
 
-.tab-item {
-  flex: 1;
-  text-align: center;
-  padding: 20rpx 0;
-  font-size: 28rpx;
-  color: #999999;
-  position: relative;
+.van-tab {
+  color: #A6B1E1 !important;
+  font-size: 28rpx !important;
 }
 
-.tab-item.active {
-  color: #4A90E2;
-  font-weight: bold;
+.van-tab--active {
+  color: #424874 !important;
+  font-weight: bold !important;
 }
 
-.tab-item.active::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 40rpx;
-  height: 4rpx;
-  background: #4A90E2;
-  border-radius: 2rpx;
+.van-tabs__line {
+  background-color: #424874 !important;
+  height: 4rpx !important;
 }
 
-/* 图表区域样式 */
+/* 图表区域 */
 .chart-section {
   background: #FFFFFF;
-  border-radius: 16rpx;
+  border-radius: 24rpx;
   margin: 20rpx;
   padding: 30rpx;
+  box-shadow: 0 2rpx 10rpx rgba(166, 177, 225, 0.2);
 }
 
 .chart-title {
   font-size: 32rpx;
   font-weight: bold;
+  color: #424874;
   margin-bottom: 30rpx;
 }
 
-/* 环形图样式 */
+/* 预算环形图 */
 .budget-ring {
-  position: relative;
-  width: 400rpx;
-  height: 400rpx;
-  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  margin: 30rpx 0;
 }
 
-.ring-center {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.budget-info {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 30rpx;
+  padding-top: 20rpx;
+  border-top: 1rpx solid #DCD6F7;
+}
+
+.info-item {
   text-align: center;
 }
 
-.ring-center .amount {
-  font-size: 40rpx;
+.info-item .label {
+  font-size: 26rpx;
+  color: #A6B1E1;
+  display: block;
+  margin-bottom: 8rpx;
+}
+
+.info-item .value {
+  font-size: 32rpx;
+  color: #424874;
   font-weight: bold;
-  color: #333333;
 }
 
-.ring-center .label {
+/* 趋势卡片 */
+.trend-cards {
+  display: flex;
+  gap: 20rpx;
+}
+
+.trend-card {
+  flex: 1;
+  background: #F4EEFF;
+  border-radius: 16rpx;
+  padding: 20rpx;
+  text-align: center;
+}
+
+.trend-card .label {
+  font-size: 26rpx;
+  color: #A6B1E1;
+  display: block;
+  margin-bottom: 8rpx;
+}
+
+.trend-card .value {
+  font-size: 36rpx;
+  color: #424874;
+  font-weight: bold;
+  display: block;
+  margin: 8rpx 0;
+}
+
+.trend-card .desc {
   font-size: 24rpx;
-  color: #999999;
+  color: #A6B1E1;
 }
 
-/* 分类列表样式 */
+/* 分类列表 */
 .category-list {
   margin-top: 30rpx;
 }
@@ -90,7 +120,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 20rpx 0;
-  border-bottom: 1rpx solid #F5F5F5;
+  border-bottom: 1rpx solid #DCD6F7;
 }
 
 .category-info {
@@ -99,36 +129,52 @@
 }
 
 .color-dot {
-  width: 20rpx;
-  height: 20rpx;
+  width: 16rpx;
+  height: 16rpx;
   border-radius: 50%;
-  margin-right: 16rpx;
+  margin-right: 12rpx;
+}
+
+.category-name {
+  color: #424874;
+  font-size: 28rpx;
 }
 
 .category-amount {
-  color: #333333;
+  color: #424874;
   font-weight: bold;
+  font-size: 28rpx;
 }
 
-/* 趋势卡片样式 */
-.trend-card {
-  background: #F8F9FA;
-  border-radius: 12rpx;
-  padding: 20rpx;
+/* 趋势图表区域 */
+.trend-summary {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 30rpx;
+  padding-top: 20rpx;
+  border-top: 1rpx solid #DCD6F7;
+}
+
+.summary-item {
   text-align: center;
 }
 
-.trend-card .value {
-  font-size: 36rpx;
+.summary-item .label {
+  font-size: 26rpx;
+  color: #A6B1E1;
+  display: block;
+  margin-bottom: 8rpx;
+}
+
+.summary-item .value {
+  font-size: 32rpx;
   font-weight: bold;
-  margin: 10rpx 0;
 }
 
-.trend-card .value.decrease {
-  color: #4CAF50;
+.summary-item .value.income {
+  color: #424874;
 }
 
-.trend-card .desc {
-  font-size: 24rpx;
-  color: #999999;
+.summary-item .value.expense {
+  color: #A6B1E1;
 } 

@@ -76,9 +76,9 @@ Component({
       // 判断是否是 tabBar 页面
       const isTabBarPage = tabItem.url.startsWith('/pages/') && 
                           (tabItem.url.includes('/index/') || 
-                           tabItem.url.includes('/charts/') || 
-                           tabItem.url.includes('/social/') || 
-                           tabItem.url.includes('/profile/'));
+                          tabItem.url.includes('/charts/') || 
+                          tabItem.url.includes('/social/') || 
+                          tabItem.url.includes('/profile/'));
       
       if (isTabBarPage) {
         wx.switchTab({

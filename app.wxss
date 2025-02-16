@@ -17,10 +17,9 @@
 
 /* 按钮样式 */
 .btn-primary {
-  background-color: #4A90E2;
-  color: #FFFFFF;
-  padding: 20rpx 40rpx;
-  border-radius: 8rpx;
+  background-color: #424874 !important;
+  color: #F4EEFF !important;
+  border: none !important;
 }
 
 .btn-warning {
@@ -30,27 +29,82 @@
 
 /* 卡片样式 */
 .card {
-  background: #FFFFFF;
-  border-radius: 16rpx;
+  background-color: #FFFFFF;
+  border-radius: 12rpx;
   padding: 24rpx;
-  margin: 20rpx;
-  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+  margin: 16rpx;
+  box-shadow: 0 2rpx 12rpx rgba(66, 72, 116, 0.1);
 }
 
 page {
-  --primary-color: #4A90E2;
-  --danger-color: #FF5252;
-  --success-color: #4CAF50;
-  --warning-color: #FF6B6B;
-  --background-color: #F5F5F5;
-  --text-color: #333333;
-  --text-color-light: #999999;
-  
-  background-color: var(--background-color);
+  background-color: #F4EEFF;
+  color: #424874;
+  padding-bottom: 100rpx; /* 为底部导航栏预留空间 */
 }
 
 /* 自定义 Vant 主题色 */
 .van-button--primary {
   background-color: var(--primary-color) !important;
   border-color: var(--primary-color) !important;
+}
+
+/* 次要按钮样式 */
+.btn-secondary {
+  background-color: #A6B1E1 !important;
+  color: #F4EEFF !important;
+  border: none !important;
+}
+
+/* 分割线样式 */
+.divider {
+  height: 1px;
+  background-color: #DCD6F7;
+  margin: 16rpx 0;
+}
+
+/* 标题文字样式 */
+.title {
+  color: #424874;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+/* 副标题文字样式 */
+.subtitle {
+  color: #A6B1E1;
+  font-size: 28rpx;
+}
+
+/* 普通文字样式 */
+.text {
+  color: #424874;
+  font-size: 28rpx;
+}
+
+/* 表单输入框样式 */
+.input {
+  background-color: #F4EEFF;
+  border: 1px solid #DCD6F7;
+  border-radius: 8rpx;
+  padding: 16rpx;
+}
+
+/* 标签样式 */
+.tag {
+  background-color: #DCD6F7;
+  color: #424874;
+  padding: 4rpx 16rpx;
+  border-radius: 24rpx;
+  font-size: 24rpx;
+}
+
+/* 选中状态样式 */
+.selected {
+  background-color: #A6B1E1;
+  color: #F4EEFF;
+}
+
+/* 如果页面有固定在底部的按钮，需要调整其位置 */
+.fixed-bottom {
+  bottom: calc(100rpx + env(safe-area-inset-bottom)) !important;
 } 
