@@ -32,9 +32,13 @@ Page({
       text: '我的',
       url: '/pages/profile/profile'
     }],
+    activeTab: 'monthly',
+    isTabSwitching: false,
   },
 
   switchTab(e) {
+    // 阻止事件冒泡
+    e.stopPropagation();
     const tabId = e.currentTarget.dataset.id;
     this.setData({ currentTab: tabId });
     this.loadChartData(tabId);
@@ -67,26 +71,68 @@ Page({
     // 加载趋势数据
   },
 
-  onLoad() {
-    // 初始化加载月度数据
-    this.loadMonthlyData();
+  onTabChange(e) {
+    // 阻止事件冒泡
+    e.stopPropagation();
+    const tabId = e.detail.name;
+    this.setData({ 
+      currentTab: tabId,
+      // 确保切换时重置一些状态
+      isTabSwitching: true
+    });
+    this.loadChartData(tabId);
+
+    // 添加一个短暂的锁定期
+    setTimeout(() => {
+      this.setData({
+        isTabSwitching: false
+      });
+    }, 300);
   },
 
   onShow() {
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
-      // 获取底部导航实例并初始化
       const tabBar = this.getTabBar();
       tabBar.setData({
-        active: 1
+        active: 1  // 确保报表标签保持激活状态
       });
       tabBar.init();
+    }
+    
+    // 如果是从其他页面返回，重新加载当前数据
+    if (this.data.currentTab) {
+      this.loadChartData(this.data.currentTab);
     }
   },
   
   onFooterNavChange(event) {
-     // 点击底部导航栏切换后回调
-     // console.log('点击底部导航栏', event.detail.detail);
+    // 如果正在切换标签页，则阻止导航
+    if (this.data.isTabSwitching) {
+      return;
+    }
+    // ... 其他导航逻辑 ...
   },
 
-
+  handleExpenseTypeChange: function(e) {
+    // 阻止事件冒泡
+    e.stopPropagation();
+    const type = e.currentTarget.dataset.type;
+    // 使用节流，避免频繁切换导致的重影
+    if (this.switchTimer) {
+      clearTimeout(this.switchTimer);
+    }
+    
+    this.switchTimer = setTimeout(() => {
+      this.setData({
+        currentExpenseType: type
+      }, () => {
+        // 根据当前activeTab重新加载对应数据
+        if (this.data.activeTab === 'monthly') {
+          this.getMonthlyData();
+        } else {
+          this.getYearlyData();
+        }
+      });
+    }, 100);
+  }
 }) 

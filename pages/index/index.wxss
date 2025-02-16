@@ -270,3 +270,19 @@ page {
 .van-nav-bar__text {
   color: #424874 !important;
 }
+
+/* 修改账单项图标样式 */
+.category-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64rpx;
+  height: 64rpx;
+  background: #F4EEFF;
+  border-radius: 16rpx;
+  margin-right: 16rpx;
+}
+
+.van-icon {
+  display: block !important;
+}

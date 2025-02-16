@@ -16,25 +16,25 @@ Component({
       {
         id: 'food',
         name: '餐饮',
-        icon: '/images/categories/food.png',
+        icon: 'coffee-o',
         type: 'expense'
       },
       {
         id: 'transport',
         name: '交通',
-        icon: '/images/categories/transport.png',
+        icon: 'logistics',
         type: 'expense'
       },
       {
         id: 'shopping',
         name: '购物',
-        icon: '/images/categories/shopping.png',
+        icon: 'cart-o',
         type: 'expense'
       },
       {
         id: 'salary',
         name: '工资',
-        icon: '/images/categories/salary.png',
+        icon: 'balance-pay',
         type: 'income'
       }
       // ... 更多分类

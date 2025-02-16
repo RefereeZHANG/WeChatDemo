@@ -57,12 +57,13 @@
 
         <view class="book-members">
           <view class="member-avatars">
-            <image 
+            <view 
               class="member-avatar" 
               wx:for="{{ item.members }}" 
               wx:key="id"
-              src="{{ item.avatar }}"
-            />
+            >
+              <van-icon name="user-o" size="24px" color="#424874"/>
+            </view>
             <view class="add-member" bindtap="addMember" data-book-id="{{ item.id }}">
               <van-icon name="plus" size="24px" color="#A6B1E1"/>
             </view>
@@ -86,7 +87,7 @@
     <van-empty 
       wx:else 
       description="还没有多人账本" 
-      image="https://img.yzcdn.cn/vant/custom-empty-image.png"
+      image="error"
     >
       <van-button 
         round 

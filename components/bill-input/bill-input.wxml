@@ -1,81 +1,75 @@
-<view class="bill-input-panel {{show ? 'show' : ''}}">
-  <view class="mask" bindtap="onClose"></view>
-  <view class="panel-content">
-    <!-- 顶部栏 -->
-    <view class="panel-header">
-      <text>记一笔</text>
-      <image class="close-icon" src="/images/close.png" bindtap="onClose" />
-    </view>
-
-    <!-- 类型选择 -->
-    <view class="type-selector">
+<van-popup
+  show="{{ show }}"
+  position="bottom"
+  custom-style="height: 80%"
+  bind:close="onClose"
+>
+  <view class="bill-input">
+    <view class="type-switch">
       <view 
-        class="type-item {{billType === 'expense' ? 'active' : ''}}"
+        class="type-item {{billType === 'expense' ? 'active' : ''}}" 
+        data-type="expense" 
         bindtap="switchType"
-        data-type="expense"
       >支出</view>
       <view 
-        class="type-item {{billType === 'income' ? 'active' : ''}}"
+        class="type-item {{billType === 'income' ? 'active' : ''}}" 
+        data-type="income" 
         bindtap="switchType"
-        data-type="income"
       >收入</view>
     </view>
 
-    <!-- 金额输入 -->
     <view class="amount-input">
       <text class="currency">¥</text>
       <input 
-        type="digit"
-        value="{{amount}}"
+        type="digit" 
+        value="{{amount}}" 
         bindinput="onAmountInput"
-        focus="{{show}}"
-        placeholder="0.00"
+        placeholder="请输入金额"
       />
     </view>
 
-    <!-- 分类选择 -->
-    <scroll-view class="category-list" scroll-x>
+    <view class="category-list">
       <view 
         class="category-item {{selectedCategory === item.id ? 'active' : ''}}"
         wx:for="{{categories}}"
         wx:key="id"
-        bindtap="selectCategory"
         data-category="{{item.id}}"
+        bindtap="selectCategory"
+        wx:if="{{item.type === billType}}"
       >
-        <image class="category-icon" src="{{item.icon}}" />
+        <van-icon name="{{item.icon}}" size="48rpx" />
         <text>{{item.name}}</text>
       </view>
-    </scroll-view>
+    </view>
 
-    <!-- 备注输入 -->
-    <view class="note-input">
+    <view class="form-item">
       <input 
-        type="text"
-        value="{{note}}"
+        type="text" 
+        value="{{note}}" 
         bindinput="onNoteInput"
         placeholder="添加备注"
       />
     </view>
 
-    <!-- 日期选择 -->
-    <view class="date-picker">
+    <view class="form-item">
       <picker 
-        mode="date"
-        value="{{date}}"
+        mode="date" 
+        value="{{date}}" 
         bindchange="onDateChange"
       >
-        <view class="picker-content">
-          <image class="calendar-icon" src="/images/calendar.png" />
-          <text>{{date}}</text>
+        <view class="picker">
+          {{date || '选择日期'}}
         </view>
       </picker>
     </view>
 
-    <!-- 保存按钮 -->
-    <button 
-      class="save-btn {{canSave ? '' : 'disabled'}}"
-      bindtap="onSave"
-      disabled="{{!canSave}}"
-    >保存</button>
+    <view class="footer">
+      <van-button 
+        block 
+        type="primary" 
+        disabled="{{!canSave}}"
+        bind:click="onSave"
+      >保存</van-button>
+    </view>
   </view>
-</view> 
+</van-popup> 

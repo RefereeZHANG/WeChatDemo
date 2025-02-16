@@ -15,15 +15,13 @@ Page({
       {
         id: 1,
         category: '餐饮',
-        icon: '/images/categories/food.png',
         amount: '38.00',
         note: '午餐',
-        type: 'expense'
+        type: 'expense',
       },
       {
         id: 2,
         category: '交通',
-        icon: '/images/categories/transport.png',
         amount: '90.00',
         note: '打车',
         type: 'expense'
@@ -37,7 +35,7 @@ Page({
     {
       icon: 'chart-trending-o',
       text: '报表',
-      url: '/pages/statistics/statistics'
+      url: '/pages/charts/charts'
     },
     {
       icon: 'friends-o',
@@ -49,6 +47,18 @@ Page({
       text: '我的',
       url: '/pages/profile/profile'
     }],
+    categoryIconMap: {
+      '餐饮': 'fire-o',
+      '交通': 'logistics',
+      '购物': 'cart-o',
+      '娱乐': 'smile-o',
+      '居住': 'home-o',
+      '通讯': 'phone-o',
+      '服饰': 'gift-o',
+      '医疗': 'plus',
+      '教育': 'bookmark-o',
+      '其他': 'apps-o'
+    }
   },
 
   onShow() {
@@ -61,12 +71,10 @@ Page({
       tabBar.init();
     }
   },
-  
   onFooterNavChange(event) {
      // 点击底部导航栏切换后回调
      // console.log('点击底部导航栏', event.detail.detail);
   },
-
   bindViewTap() {
     wx.navigateTo({
       url: '../logs/logs'
@@ -111,5 +119,14 @@ Page({
   },
   onLoad() {
     // 页面加载时的初始化逻辑
-  }
+    // 测试 getCategoryIcon 函数
+    // console.log('测试 getCategoryIcon 函数');
+    // const testIcon = this.getCategoryIcon('餐饮');
+    // console.log('测试结果:', testIcon);
+    // 测试 bills 数据和图标映射
+    // console.log('当前账单数据:', this.data.bills);
+    // this.data.bills.forEach(bill => {
+    //   console.log(`账单类别: ${bill.category}, 对应图标: ${this.getCategoryIcon(bill.category)}`);
+    // });
+  },
 })

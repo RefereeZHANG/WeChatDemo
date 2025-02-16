@@ -177,4 +177,13 @@ page {
 
 .summary-item .value.expense {
   color: #A6B1E1;
+}
+
+/* 添加切换动画 */
+.chart-container {
+  transition: opacity 0.2s ease-in-out;
+}
+
+.expense-type-switch {
+  transition: all 0.2s ease-in-out;
 } 

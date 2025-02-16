@@ -2,7 +2,7 @@ Page({
   data: {
     userInfo: {
       avatarUrl: '/images/default-avatar.png',
-      nickName: '未登录',
+      nickName: '东川逸梦',
       streakDays: 0,
       totalBills: 0,
       monthlyBills: 0,
@@ -12,31 +12,30 @@ Page({
       {
         id: 1,
         name: '记账新手',
-        icon: '/images/achievements/newbie.png',
+        icon: 'records',
         unlocked: true
       },
       {
         id: 2,
         name: '坚持达人',
-        icon: '/images/achievements/streak.png',
+        icon: 'clock-o',
         unlocked: true
       },
       {
         id: 3,
         name: '理财高手',
-        icon: '/images/achievements/master.png',
+        icon: 'gold-coin-o',
         unlocked: false
       },
       {
         id: 4,
         name: '节约能手',
-        icon: '/images/achievements/saver.png',
+        icon: 'gift-o',
         unlocked: false
       }
     ],
     pet: {
       name: '小财神',
-      image: '/images/pet/normal.png',
       moodStars: 4,
       message: '主人今天也要记得记账哦！'
     },
@@ -44,25 +43,25 @@ Page({
       {
         id: 1,
         name: '导出账单',
-        icon: '/images/functions/export.png',
+        icon: 'balance-list-o',
         url: '/pages/export/export'
       },
       {
         id: 2,
         name: '预算设置',
-        icon: '/images/functions/budget.png',
+        icon: 'balance-o',
         url: '/pages/budget/budget'
       },
       {
         id: 3,
         name: '消息通知',
-        icon: '/images/functions/notification.png',
+        icon: 'bell',
         url: '/pages/notification/notification'
       },
       {
         id: 4,
         name: '帮助中心',
-        icon: '/images/functions/help.png',
+        icon: 'question-o',
         url: '/pages/help/help'
       }
     ],
@@ -107,7 +106,6 @@ Page({
   onLoad() {
     this.getUserInfo();
     this.checkAchievements();
-    this.updatePetStatus();
   },
 
   getUserInfo() {
@@ -132,14 +130,16 @@ Page({
   },
 
   updatePetStatus() {
-    // 根据记账情况更新宠物状态
     const lastBillDate = wx.getStorageSync('lastBillDate');
     const today = new Date().toDateString();
     
     if (lastBillDate === today) {
       this.setData({
-        'pet.message': '今天已经记账啦，真棒！',
-        'pet.image': '/images/pet/happy.png'
+        'pet.message': '今天已经记账啦，真棒！'
+      });
+    } else {
+      this.setData({
+        'pet.message': '主人今天也要记得记账哦！'
       });
     }
   },

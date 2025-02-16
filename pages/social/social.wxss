@@ -149,6 +149,10 @@ page {
   border: 2rpx solid #FFFFFF;
   margin-right: -12rpx;
   flex-shrink: 0;
+  background: #DCD6F7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .add-member {

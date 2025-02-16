@@ -18,15 +18,20 @@ Component({
 
   methods: {
     setCategoryIcon(category) {
-      const icons = {
-        food: '/images/categories/food.png',
-        transport: '/images/categories/transport.png',
-        shopping: '/images/categories/shopping.png',
-        salary: '/images/categories/salary.png'
-        // ... 更多分类图标
+      const iconMap = {
+        '餐饮': 'coffee-o',
+        '交通': 'logistics',
+        '购物': 'cart-o',
+        '娱乐': 'smile-o',
+        '居住': 'home-o',
+        '通讯': 'phone-o',
+        '服饰': 'gift-o',
+        '医疗': 'plus',
+        '教育': 'bookmark-o',
+        '其他': 'apps-o'
       };
       this.setData({
-        categoryIcon: icons[category] || '/images/categories/other.png'
+        categoryIcon: iconMap[category] || 'apps-o'
       });
     },
 
