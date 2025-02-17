@@ -1,0 +1,95 @@
+<view class="container">
+  <!-- 用户信息卡片 -->
+  <view class="user-card">
+    <view class="user-info">
+      <view class="avatar-container">
+        <van-image
+          round
+          width="120rpx"
+          height="120rpx"
+          src="{{ userInfo.avatarUrl }}"
+        />
+        <view class="level-tag">Lv.{{ userInfo.level || 1 }}</view>
+      </view>
+      <view class="user-detail">
+        <text class="nickname">{{ userInfo.nickName }}</text>
+        <text class="streak">已坚持记账 {{ userInfo.streakDays || 0 }} 天</text>
+      </view>
+    </view>
+    <view class="stats-row">
+      <view class="stat-item">
+        <text class="num">{{ userInfo.monthlyBills || 0 }}</text>
+        <text class="label">本月记账</text>
+      </view>
+      <view class="stat-item">
+        <text class="num">{{ userInfo.totalBills || 0 }}</text>
+        <text class="label">总记账笔数</text>
+      </view>
+      <view class="stat-item">
+        <text class="num">{{ userInfo.unlockedAchievements || 0 }}</text>
+        <text class="label">已获成就</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 虚拟宠物卡片 -->
+  <view class="pet-card">
+    <view class="pet-header">
+      <text class="pet-name">{{ pet.name }}</text>
+      <view class="mood-stars">
+        <van-icon 
+          name="star" 
+          color="#424874" 
+          size="16px"
+          wx:for="{{ pet.moodStars }}"
+          wx:key="index"
+        />
+      </view>
+    </view>
+    <view class="pet-content">
+      <view class="pet-image-container">
+        <image style="position: relative; left: 21rpx; top: 21rpx" 
+          class="pet-image" 
+          src="/images/pet/normal.png" 
+          mode="aspectFill"
+        />
+      </view>
+      <view class="speech-bubble">
+        <text>{{ pet.message }}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 成就展示 -->
+  <view class="achievements-card">
+    <view class="card-title">
+      <text>我的成就</text>
+      <text class="subtitle">已解锁 {{ userInfo.unlockedAchievements }}/{{ achievements.length }}</text>
+    </view>
+    <view class="achievements-grid">
+      <view class="achievement-item {{ item.unlocked ? 'unlocked' : '' }}" 
+            wx:for="{{ achievements }}" 
+            wx:key="id">
+        <van-icon name="{{ item.icon }}" size="60rpx" color="{{ item.unlocked ? '#424874' : '#A6B1E1' }}"/>
+        <text class="achievement-name">{{ item.name }}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 功能列表 -->
+  <view class="function-list">
+    <view class="function-item" 
+          wx:for="{{ functionList }}" 
+          wx:key="id"
+          bindtap="navigateToFunction"
+          data-url="{{ item.url }}">
+      <view class="function-left">
+        <van-icon name="{{ item.icon }}" size="40rpx" color="#424874" class="function-icon"/>
+        <text>{{ item.name }}</text>
+      </view>
+      <van-icon name="arrow" color="#A6B1E1"/>
+    </view>
+  </view>
+</view>
+
+<custom-tab-bar id="footer-nav-bar-id" />

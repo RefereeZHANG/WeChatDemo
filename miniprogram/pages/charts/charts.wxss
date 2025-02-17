@@ -1,0 +1,189 @@
+page {
+  background-color: #F4EEFF;
+}
+
+.container {
+  padding-bottom: 120rpx;
+}
+
+/* Tab样式 */
+.van-tabs__wrap {
+  background: #FFFFFF !important;
+  border-radius: 24rpx 24rpx 0 0 !important;
+  margin: 20rpx 20rpx 0 !important;
+}
+
+.van-tab {
+  color: #A6B1E1 !important;
+  font-size: 28rpx !important;
+}
+
+.van-tab--active {
+  color: #424874 !important;
+  font-weight: bold !important;
+}
+
+.van-tabs__line {
+  background-color: #424874 !important;
+  height: 4rpx !important;
+}
+
+/* 图表区域 */
+.chart-section {
+  background: #FFFFFF;
+  border-radius: 24rpx;
+  margin: 20rpx;
+  padding: 30rpx;
+  box-shadow: 0 2rpx 10rpx rgba(166, 177, 225, 0.2);
+}
+
+.chart-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #424874;
+  margin-bottom: 30rpx;
+}
+
+/* 预算环形图 */
+.budget-ring {
+  display: flex;
+  justify-content: center;
+  margin: 30rpx 0;
+}
+
+.budget-info {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 30rpx;
+  padding-top: 20rpx;
+  border-top: 1rpx solid #DCD6F7;
+}
+
+.info-item {
+  text-align: center;
+}
+
+.info-item .label {
+  font-size: 26rpx;
+  color: #A6B1E1;
+  display: block;
+  margin-bottom: 8rpx;
+}
+
+.info-item .value {
+  font-size: 32rpx;
+  color: #424874;
+  font-weight: bold;
+}
+
+/* 趋势卡片 */
+.trend-cards {
+  display: flex;
+  gap: 20rpx;
+}
+
+.trend-card {
+  flex: 1;
+  background: #F4EEFF;
+  border-radius: 16rpx;
+  padding: 20rpx;
+  text-align: center;
+}
+
+.trend-card .label {
+  font-size: 26rpx;
+  color: #A6B1E1;
+  display: block;
+  margin-bottom: 8rpx;
+}
+
+.trend-card .value {
+  font-size: 36rpx;
+  color: #424874;
+  font-weight: bold;
+  display: block;
+  margin: 8rpx 0;
+}
+
+.trend-card .desc {
+  font-size: 24rpx;
+  color: #A6B1E1;
+}
+
+/* 分类列表 */
+.category-list {
+  margin-top: 30rpx;
+}
+
+.category-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #DCD6F7;
+}
+
+.category-info {
+  display: flex;
+  align-items: center;
+}
+
+.color-dot {
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 50%;
+  margin-right: 12rpx;
+}
+
+.category-name {
+  color: #424874;
+  font-size: 28rpx;
+}
+
+.category-amount {
+  color: #424874;
+  font-weight: bold;
+  font-size: 28rpx;
+}
+
+/* 趋势图表区域 */
+.trend-summary {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 30rpx;
+  padding-top: 20rpx;
+  border-top: 1rpx solid #DCD6F7;
+}
+
+.summary-item {
+  text-align: center;
+}
+
+.summary-item .label {
+  font-size: 26rpx;
+  color: #A6B1E1;
+  display: block;
+  margin-bottom: 8rpx;
+}
+
+.summary-item .value {
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.summary-item .value.income {
+  color: #424874;
+}
+
+.summary-item .value.expense {
+  color: #A6B1E1;
+}
+
+/* 添加切换动画 */
+.chart-container {
+  transition: opacity 0.2s ease-in-out;
+}
+
+.expense-type-switch {
+  transition: all 0.2s ease-in-out;
+} 

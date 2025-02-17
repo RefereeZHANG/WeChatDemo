@@ -1,0 +1,482 @@
+/**index.wxss**/
+page {
+  background-color: #F4EEFF;
+  min-height: 100vh;
+}
+
+.container {
+  padding-bottom: 120rpx;
+}
+
+/* 导航栏 */
+.nav-bar {
+  background-color: #F4EEFF !important;
+}
+
+/* 预算卡片 */
+.budget-card {
+  background: #FFFFFF;
+  border-radius: 24rpx;
+  margin: 20rpx;
+  padding: 30rpx;
+  box-shadow: 0 2rpx 10rpx rgba(166, 177, 225, 0.2);
+}
+
+.budget-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #424874;
+  text-align: center;
+  margin-bottom: 20rpx;
+}
+
+.budget-circle {
+  display: flex;
+  justify-content: center;
+  margin: 20rpx 0;
+}
+
+.budget-info {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 30rpx;
+  padding-top: 20rpx;
+  border-top: 1rpx solid #DCD6F7;
+}
+
+.budget-item {
+  text-align: center;
+}
+
+.budget-item .label {
+  font-size: 26rpx;
+  color: #A6B1E1;
+  margin-bottom: 8rpx;
+  display: block;
+}
+
+.budget-item .value {
+  font-size: 32rpx;
+  color: #424874;
+  font-weight: bold;
+}
+
+/* 今日账单卡片 */
+.today-bills {
+  background: #FFFFFF;
+  border-radius: 24rpx;
+  margin: 20rpx;
+  padding: 30rpx;
+  box-shadow: 0 2rpx 10rpx rgba(166, 177, 225, 0.2);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20rpx;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #424874;
+}
+
+.today-summary {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8rpx;
+}
+
+.amount-item {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+}
+
+.label {
+  font-size: 24rpx;
+  color: #A6B1E1;
+}
+
+.expense-amount {
+  font-size: 32rpx;
+  color: #424874;
+  font-weight: bold;
+}
+
+.income-amount {
+  font-size: 32rpx;
+  color: #A6B1E1;
+  font-weight: bold;
+}
+
+.today-total {
+  font-size: 28rpx;
+  color: #A6B1E1;
+}
+
+.bill-list {
+  margin-top: 20rpx;
+}
+
+.bill-item {
+  border-radius: 12rpx !important;
+  margin-bottom: 16rpx;
+  background: #F4EEFF !important;
+}
+
+.expense {
+  color: #424874 !important;
+  font-weight: bold;
+}
+
+.income {
+  color: #A6B1E1 !important;
+  font-weight: bold;
+}
+
+.delete-btn {
+  width: 130rpx;
+  height: 100%;
+  background-color: #424874;
+  color: #F4EEFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28rpx;
+}
+
+/* 记账按钮 */
+.btn-create {
+  position: fixed;
+  bottom: 180rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #424874;
+  color: #F4EEFF;
+  font-size: 32rpx;
+  padding: 20rpx 60rpx;
+  border-radius: 40rpx;
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  box-shadow: 0 4rpx 20rpx rgba(66, 72, 116, 0.3);
+  z-index: 99;
+}
+
+.scrollarea {
+  flex: 1;
+  overflow-y: hidden;
+}
+
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #aaa;
+  width: 80%;
+}
+
+.userinfo-avatar {
+  overflow: hidden;
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.usermotto {
+  margin-top: 200px;
+}
+
+.avatar-wrapper {
+  padding: 0;
+  width: 56px !important;
+  border-radius: 8px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.avatar {
+  display: block;
+  width: 56px;
+  height: 56px;
+}
+
+.nickname-wrapper {
+  display: flex;
+  width: 100%;
+  padding: 16px;
+  box-sizing: border-box;
+  border-top: .5px solid rgba(0, 0, 0, 0.1);
+  border-bottom: .5px solid rgba(0, 0, 0, 0.1);
+  color: black;
+}
+
+.nickname-label {
+  width: 105px;
+}
+
+.nickname-input {
+  flex: 1;
+}
+
+/* 顶部栏样式 */
+.header {
+  background: #FFFFFF;
+  padding: 40rpx 30rpx;
+  margin: 20rpx;
+  border-radius: 24rpx;
+  box-shadow: 0 2rpx 10rpx rgba(166, 177, 225, 0.2);
+}
+
+.month-selector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #424874;
+}
+
+.budget-progress {
+  margin-top: 30rpx;
+  display: flex;
+  justify-content: center;
+}
+
+.circle-progress {
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 50%;
+  border: 8rpx solid #4A90E2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 账单列表样式 */
+.van-cell-group {
+  border-radius: 24rpx !important;
+  overflow: hidden;
+  margin-bottom: 20rpx;
+  background: #FFFFFF !important;
+}
+
+.van-cell {
+  background: #FFFFFF !important;
+}
+
+.van-cell__title {
+  color: #424874 !important;
+}
+
+/* 添加按钮样式 */
+.add-bill-btn {
+  position: fixed !important;
+  bottom: 140rpx !important;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100rpx !important;
+  height: 100rpx !important;
+  border-radius: 50% !important;
+  background: #424874 !important;
+  box-shadow: 0 4rpx 20rpx rgba(66, 72, 116, 0.3);
+}
+
+.add-bill-btn image {
+  width: 60rpx;
+  height: 60rpx;
+}
+
+/* 顶部导航栏 */
+.van-nav-bar {
+  background-color: #F4EEFF !important;
+}
+
+.van-nav-bar__text {
+  color: #424874 !important;
+}
+
+/* 修改账单项图标样式 */
+.category-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64rpx;
+  height: 64rpx;
+  background: #F4EEFF;
+  border-radius: 16rpx;
+  margin-right: 16rpx;
+}
+
+.van-icon {
+  display: block !important;
+}
+
+.category-picker {
+  width: 100%;
+  height: 300px;
+}
+
+.van-picker__toolbar {
+  padding: 16rpx;
+}
+
+/* 记账表单样式 */
+.bill-form {
+  padding: 50rpx;
+}
+
+.type-selector {
+  display: flex;
+  justify-content: space-around;
+  padding: 20rpx 0;
+  margin-bottom: 30rpx;
+}
+
+.form-buttons {
+  margin-top: 40rpx;
+  padding-bottom: 40rpx;
+}
+
+/* 自定义按钮样式 */
+.van-button--primary {
+  background: #424874 !important;
+  border: none !important;
+  color: #F4EEFF !important;
+}
+
+/* 账单详情弹窗样式 */
+.bill-detail {
+  padding: 40rpx;
+  background: #FFFFFF;
+}
+
+.detail-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24rpx 0;
+  border-bottom: 2rpx solid rgba(220, 214, 247, 0.3);
+}
+
+.detail-item:last-child {
+  border-bottom: none;
+}
+
+.detail-label {
+  color: #A6B1E1;
+  font-size: 28rpx;
+  font-weight: 500;
+}
+
+.detail-value {
+  color: #424874;
+  font-size: 30rpx;
+  font-weight: 600;
+}
+
+.detail-value.expense {
+  color: #424874;
+  position: relative;
+  padding-right: 10rpx;
+}
+
+.detail-value.income {
+  color: #A6B1E1;
+  position: relative;
+  padding-right: 10rpx;
+}
+
+/* 添加图标容器 */
+.detail-icon-container {
+  width: 80rpx;
+  height: 80rpx;
+  background: #F4EEFF;
+  border-radius: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30rpx;
+}
+
+/* 标题样式 */
+.detail-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30rpx 0;
+  border-bottom: 2rpx solid rgba(220, 214, 247, 0.3);
+  margin-bottom: 20rpx;
+}
+
+.detail-amount {
+  font-size: 48rpx;
+  font-weight: bold;
+  margin: 20rpx 0;
+}
+
+.detail-amount.expense {
+  color: #424874;
+}
+
+.detail-amount.income {
+  color: #A6B1E1;
+}
+
+.detail-category {
+  font-size: 28rpx;
+  color: #A6B1E1;
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+}
+
+/* 自定义弹窗样式 */
+.van-dialog {
+  border-radius: 24rpx !important;
+  overflow: hidden;
+}
+
+.van-dialog__header {
+  padding-top: 24rpx !important;
+  font-weight: bold !important;
+  color: #424874 !important;
+}
+
+.van-button--default {
+  border-radius: 40rpx !important;
+  font-weight: bold !important;
+  width: 240rpx !important;
+}
+
+/* 确保弹窗按钮区域有足够的内边距 */
+.van-dialog__footer {
+  padding: 20rpx !important;
+}
+
+.van-dialog__footer button {
+  margin: 0 auto !important;
+  display: block !important;
+  text-align: center !important;
+}
+
+.van-dialog__button {
+  text-align: center !important;
+}
+
+.van-button__text {
+  display: inline-block !important;
+  text-align: center !important;
+  width: 100% !important;
+}
+
+/* 弹窗内容区域的最大高度设置 */
+.van-dialog__content {
+  max-height: 80vh;
+  overflow-y: auto;
+}

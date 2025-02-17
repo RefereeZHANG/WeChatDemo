@@ -1,0 +1,206 @@
+<!--index.wxml-->
+<view class="container">
+  <!-- 顶部导航 -->
+  <van-nav-bar
+    title="2024年3月"
+    right-text="预算设置"
+    bind:click-right="onClickRight"
+    custom-class="nav-bar"
+  />
+
+  <!-- 预算进度卡片 -->
+  <view class="budget-card">
+    <view class="budget-title">本月预算</view>
+    <view class="budget-circle">
+      <block wx:if="{{ budgetPercentage !== null }}">
+        <van-circle
+          value="{{ Number(budgetPercentage) }}"
+          layer-color="{{ gradientColor }}"
+          text="剩余预算\n¥{{ remainingBudget }}"
+          text-color="#424874"
+          stroke-width="8"
+          size="180"
+          speed="0"
+          clockwise="{{ true }}"
+          bindtap="handleBudgetTap"
+        />
+      </block>
+    </view>
+    <view class="budget-info">
+      <view class="budget-item">
+        <text class="label">总预算</text>
+        <text class="value">¥{{ totalBudget || '0.00' }}</text>
+      </view>
+      <view class="budget-item">
+        <text class="label">已使用</text>
+        <text class="value expense">¥{{ currentMonthBills || '0.00' }}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 今日账单卡片 -->
+  <view class="today-bills">
+    <view class="section-header">
+      <text class="section-title">今日账单</text>
+      <view class="today-summary">
+        <view class="amount-item">
+          <text class="label">支出</text>
+          <text class="expense-amount">¥{{ todayExpense || '0.00' }}</text>
+        </view>
+        <view class="amount-item" wx:if="{{ todayIncome > 0 }}">
+          <text class="label">收入</text>
+          <text class="income-amount">¥{{ todayIncome }}</text>
+        </view>
+      </view>
+    </view>
+    
+    <view class="bill-list">
+      <block wx:if="{{ bills.length > 0 }}">
+        <van-swipe-cell right-width="{{ 65 }}" wx:for="{{ bills }}" wx:key="_id">
+          <van-cell
+            title="{{ item.category }}"
+            label="{{ item.note }}"
+            value="{{ item.type === 'expense' ? '-' : '+' }}{{ item.amount }}"
+            value-class="{{ item.type === 'expense' ? 'expense' : 'income' }}"
+            custom-class="bill-item"
+            bind:click="showBillDetail"
+            data-bill="{{ item }}"
+          >
+            <view slot="icon" class="category-icon">
+              <van-icon 
+                name="{{ item.type === 'expense' ? categoryIconMap[item.category] : incomeCategoryIconMap[item.category] || 'apps-o' }}"
+                size="40rpx"
+                color="#424874"
+              />
+            </view>
+          </van-cell>
+          <view slot="right" class="delete-btn" data-id="{{ item._id }}" bindtap="onDeleteBill">删除</view>
+        </van-swipe-cell>
+      </block>
+      <view wx:else class="empty-tip">
+        <van-empty description="今天还没有记账哦" />
+      </view>
+    </view>
+  </view>
+
+  <!-- 记一笔按钮 -->
+  <view class="btn-create" bindtap="showBillPopup">
+    <van-icon name="plus" size="24px" color="#F4EEFF"/>
+    <text>记一笔</text>
+  </view>
+
+  <!-- 记账弹出层 -->
+  <van-popup
+    show="{{ showAddBill }}"
+    position="bottom"
+    round
+    custom-style="padding-top: 20rpx;"
+    bind:close="onAddBillClose"
+  >
+    <view class="bill-form">
+      <van-radio-group value="{{ billType }}" bind:change="onBillTypeChange">
+        <view class="type-selector">
+          <van-radio name="expense">支出</van-radio>
+          <van-radio name="income">收入</van-radio>
+        </view>
+      </van-radio-group>
+
+      <van-field
+        model:value="{{ amount }}"
+        type="digit"
+        label="金额"
+        placeholder="请输入金额"
+      />
+
+      <van-field
+        value="{{ category }}"
+        label="类别"
+        placeholder="请选择类别"
+        readonly
+        is-link
+        bind:tap="showCategoryPicker"
+      />
+
+      <van-field
+        model:value="{{ note }}"
+        label="备注"
+        placeholder="请输入备注（选填）"
+        type="textarea"
+        autosize
+      />
+
+      <view class="form-buttons">
+        <van-button 
+          block 
+          type="primary" 
+          color="#424874" 
+          bind:tap="onSubmitBill"
+          loading="{{ isSubmitting }}"
+          disabled="{{ isSubmitting }}"
+        >
+          保存
+        </van-button>
+      </view>
+    </view>
+  </van-popup>
+
+  <van-popup
+    show="{{ showCategoryPicker }}"
+    position="bottom"
+    bind:close="onCategoryClose"
+  >
+    <van-picker
+      show-toolbar
+      title="选择类别"
+      columns="{{ categoryList }}"
+      bind:cancel="onCategoryClose"
+      bind:confirm="onCategoryConfirm"
+      custom-class="category-picker"
+    />
+  </van-popup>
+
+  <!-- 账单详情弹窗 -->
+  <van-dialog
+    use-slot
+    show="{{ showBillDetail }}"
+    bind:close="onBillDetailClose"
+    confirmButtonText="关闭"
+    confirmButtonColor="#424874"
+    show-cancel-button="{{ false }}"
+    custom-class="bill-detail-dialog"
+    button-center
+  >
+    <view class="bill-detail">
+      <view class="detail-header">
+        <view class="detail-icon-container">
+          <van-icon 
+            name="{{ currentBill.type === 'expense' ? categoryIconMap[currentBill.category] : incomeCategoryIconMap[currentBill.category] || 'apps-o' }}"
+            size="40rpx"
+            color="#424874"
+          />
+        </view>
+        <view class="detail-amount {{ currentBill.type === 'expense' ? 'expense' : 'income' }}">
+          {{ currentBill.type === 'expense' ? '-' : '+' }}{{ currentBill.amount }}
+        </view>
+        <view class="detail-category">
+          <text>{{ currentBill.category }}</text>
+        </view>
+      </view>
+
+      <view class="detail-item">
+        <text class="detail-label">类型</text>
+        <text class="detail-value">{{ currentBill.type === 'expense' ? '支出' : '收入' }}</text>
+      </view>
+      <view class="detail-item">
+        <text class="detail-label">备注</text>
+        <text class="detail-value">{{ currentBill.note || '无' }}</text>
+      </view>
+      <view class="detail-item">
+        <text class="detail-label">时间</text>
+        <text class="detail-value">{{ currentBill.dateFormatted }}</text>
+      </view>
+    </view>
+  </van-dialog>
+</view>
+
+<custom-tab-bar id="footer-nav-bar-id" />

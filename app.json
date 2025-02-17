@@ -1,57 +1,5 @@
 {
-  "pages": [
-    "pages/index/index",
-    "pages/charts/charts",
-    "pages/social/social",
-    "pages/profile/profile",
-    "pages/logs/logs"
-  ],
-  "window": {
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "记账本",
-    "navigationBarTextStyle": "black"
-  },
-  "tabBar": {
-    "custom": true,
-    "color": "#999999",
-    "selectedColor": "#4A90E2",
-    "backgroundColor": "#ffffff",
-    "list": [
-      {
-        "pagePath": "pages/index/index",
-        "text": "首页"
-      },
-      {
-        "pagePath": "pages/charts/charts",
-        "text": "报表"
-      },
-      {
-        "pagePath": "pages/social/social",
-        "text": "社交"
-      },
-      {
-        "pagePath": "pages/profile/profile",
-        "text": "我的"
-      }
-    ]
-  },
-  "style": "v2",
-  "componentFramework": "glass-easel",
-  "sitemapLocation": "sitemap.json",
-  "lazyCodeLoading": "requiredComponents",
   "usingComponents": {
-    "van-button": "@vant/weapp/button/index",
-    "van-tab": "@vant/weapp/tab/index",
-    "van-tabs": "@vant/weapp/tabs/index",
-    "van-tabbar": "@vant/weapp/tabbar/index",
-    "van-tabbar-item": "@vant/weapp/tabbar-item/index",
-    "van-icon": "@vant/weapp/icon/index",
-    "van-circle": "@vant/weapp/circle/index",
-    "van-cell": "@vant/weapp/cell/index",
-    "van-cell-group": "@vant/weapp/cell-group/index",
-    "van-popup": "@vant/weapp/popup/index",
-    "van-field": "@vant/weapp/field/index",
-    "van-swipe-cell": "@vant/weapp/swipe-cell/index"
+    "add-bill": "/components/add-bill/add-bill"
   }
-}
+} 
