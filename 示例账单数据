@@ -1,0 +1,82 @@
+[
+  {
+    "amount": 35.50,
+    "type": "expense",
+    "category": "餐饮",
+    "date": "2024-03-20",
+    "description": "午餐-盖浇饭",
+    "createTime": "2024-03-20T12:30:00.000Z"
+  },
+  {
+    "amount": 15.00,
+    "type": "expense",
+    "category": "交通",
+    "date": "2024-03-20",
+    "description": "地铁",
+    "createTime": "2024-03-20T09:00:00.000Z"
+  },
+  {
+    "amount": 199.00,
+    "type": "expense",
+    "category": "购物",
+    "date": "2024-03-19",
+    "description": "超市采购",
+    "createTime": "2024-03-19T19:30:00.000Z"
+  },
+  {
+    "amount": 45.00,
+    "type": "expense",
+    "category": "娱乐",
+    "date": "2024-03-19",
+    "description": "电影票",
+    "createTime": "2024-03-19T20:00:00.000Z"
+  },
+  {
+    "amount": 8000.00,
+    "type": "income",
+    "category": "工资",
+    "date": "2024-03-15",
+    "description": "3月工资",
+    "createTime": "2024-03-15T10:00:00.000Z"
+  },
+  {
+    "amount": 25.00,
+    "type": "expense",
+    "category": "通讯",
+    "date": "2024-03-18",
+    "description": "话费充值",
+    "createTime": "2024-03-18T15:20:00.000Z"
+  },
+  {
+    "amount": 128.00,
+    "type": "expense",
+    "category": "服饰",
+    "date": "2024-03-17",
+    "description": "T恤",
+    "createTime": "2024-03-17T14:30:00.000Z"
+  },
+  {
+    "amount": 500.00,
+    "type": "income",
+    "category": "兼职",
+    "date": "2024-03-16",
+    "description": "周末兼职",
+    "createTime": "2024-03-16T18:00:00.000Z"
+  },
+  {
+    "amount": 66.00,
+    "type": "expense",
+    "category": "医疗",
+    "date": "2024-03-18",
+    "description": "感冒药",
+    "createTime": "2024-03-18T11:20:00.000Z"
+  },
+  {
+    "amount": 299.00,
+    "type": "expense",
+    "category": "教育",
+    "date": "2024-03-16",
+    "description": "编程课程",
+    "createTime": "2024-03-16T09:30:00.000Z"
+  }
+] 

@@ -1,0 +1,17 @@
+{
+  "usingComponents": {
+    "bill-input": "../../components/bill-input/bill-input",
+    "budget-progress": "../../components/budget-progress/budget-progress",
+    "bill-item": "../../components/bill-item/bill-item",
+    "date-picker": "../../components/date-picker/date-picker",
+    "van-icon": "@vant/weapp/icon/index",
+    "van-image": "@vant/weapp/image/index",
+    "van-popup": "@vant/weapp/popup/index",
+    "van-field": "@vant/weapp/field/index",
+    "van-radio": "@vant/weapp/radio/index",
+    "van-radio-group": "@vant/weapp/radio-group/index",
+    "van-button": "@vant/weapp/button/index",
+    "van-picker": "@vant/weapp/picker/index",
+    "van-dialog": "@vant/weapp/dialog/index"
+  }
+}
