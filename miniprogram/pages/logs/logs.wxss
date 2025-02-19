@@ -1,16 +1,174 @@
-page {
-  height: 100vh;
+.container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #F4EEFF 0%, #DCD6F7 100%);
+  position: relative;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  padding: 0 40rpx;
 }
-.scrollarea {
-  flex: 1;
-  overflow-y: hidden;
+
+/* 背景动画波浪 */
+.background-waves {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 0%, transparent 60%),
+    radial-gradient(circle at 80% 20%, rgba(255,255,255,0.2) 0%, transparent 40%);
+  animation: wave 8s infinite linear;
+  z-index: 1;
 }
-.log-item {
-  margin-top: 20rpx;
+
+@keyframes wave {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Logo区域样式 */
+.logo-container {
+  margin-top: 120rpx;
   text-align: center;
+  z-index: 2;
+  animation: fadeInDown 1s ease-out;
 }
-.log-item:last-child {
-  padding-bottom: env(safe-area-inset-bottom);
+
+.logo-image {
+  width: 180rpx;
+  height: 180rpx;
+  margin-bottom: 30rpx;
+  border-radius: 36rpx;
+  box-shadow: 0 8rpx 16rpx rgba(66, 72, 116, 0.1);
 }
+
+.app-name {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #424874;
+  margin-bottom: 16rpx;
+  letter-spacing: 2rpx;
+}
+
+.app-slogan {
+  font-size: 28rpx;
+  color: #A6B1E1;
+  margin-bottom: 80rpx;
+}
+
+/* 功能特点展示 */
+.features {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-bottom: 80rpx;
+  z-index: 2;
+  animation: fadeInUp 1s ease-out;
+}
+
+.feature-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 30rpx;
+  border-radius: 20rpx;
+  box-shadow: 0 4rpx 12rpx rgba(66, 72, 116, 0.08);
+  backdrop-filter: blur(10px);
+}
+
+.feature-item text {
+  font-size: 24rpx;
+  color: #424874;
+  margin-top: 16rpx;
+}
+
+/* 登录按钮区域 */
+.login-section {
+  width: 100%;
+  z-index: 2;
+  animation: fadeInUp 1.2s ease-out;
+}
+
+.login-btn {
+  height: 88rpx !important;
+  border-radius: 44rpx !important;
+  font-size: 32rpx !important;
+  font-weight: bold !important;
+  box-shadow: 0 8rpx 16rpx rgba(66, 72, 116, 0.2) !important;
+}
+
+.guest-login {
+  text-align: center;
+  margin-top: 32rpx;
+  color: #424874;
+  font-size: 28rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8rpx;
+}
+
+/* 底部信息 */
+.footer {
+  position: absolute;
+  bottom: 60rpx;
+  left: 0;
+  right: 0;
+  text-align: center;
+  z-index: 2;
+}
+
+.privacy-policy {
+  font-size: 24rpx;
+  color: #A6B1E1;
+  margin-bottom: 16rpx;
+}
+
+.link {
+  color: #424874;
+  text-decoration: underline;
+}
+
+.version {
+  font-size: 22rpx;
+  color: #A6B1E1;
+}
+
+/* 动画效果 */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30rpx);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30rpx);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 适配 iPhone 底部安全区域 */
+@supports (padding-bottom: constant(safe-area-inset-bottom)) {
+  .container {
+    padding-bottom: constant(safe-area-inset-bottom);
+  }
+}
+
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .container {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+} 

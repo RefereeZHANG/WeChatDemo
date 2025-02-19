@@ -21,7 +21,39 @@ App({
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
       }
     })
+
+    this.checkLogin()
   },
+
+  async checkLogin() {
+    try {
+      const userInfo = wx.getStorageSync('userInfo')
+      
+      if (!userInfo) {
+        // 未登录，跳转到登录页
+        wx.reLaunch({
+          url: '/pages/logs/logs'
+        })
+        return
+      }
+
+      // 验证登录状态
+      const { result } = await wx.cloud.callFunction({
+        name: 'checkLogin'
+      })
+
+      if (!result.isRegistered) {
+        // 登录状态失效，跳转到登录页
+        wx.removeStorageSync('userInfo')
+        wx.reLaunch({
+          url: '/pages/logs/logs'
+        })
+      }
+    } catch (error) {
+      console.error('检查登录状态失败:', error)
+    }
+  },
+
   globalData: {
     userInfo: null
   }
