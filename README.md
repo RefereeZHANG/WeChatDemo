@@ -52,7 +52,6 @@
 
 ## 项目结构
 
-```
 miniprogram/
 ├── components/        # 自定义组件
 │   ├── bill-input/    # 记账输入组件
@@ -64,7 +63,6 @@ miniprogram/
 │   ├── social/       # 社交
 │   └── profile/      # 个人中心
 └── style/            # 全局样式
-```
 
 ## 安装和使用
 
