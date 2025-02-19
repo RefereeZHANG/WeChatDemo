@@ -68,9 +68,12 @@ Page({
     gradientColor: 'rgb(66, 80, 116)',
     todayExpense: 0,
     todayIncome: 0,
-    isSubmitting: false
+    isSubmitting: false,
+    showBillDetail: false,
+    currentBill: null
   },
 
+  //导航栏设置
   onShow() {
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
       const tabBar = this.getTabBar();
@@ -83,6 +86,7 @@ Page({
   onFooterNavChange(event) {
     // 点击底部导航栏切换后回调
   },
+  //未登录
   bindViewTap() {
     wx.navigateTo({
       url: '../logs/logs'
@@ -115,6 +119,7 @@ Page({
       }
     })
   },
+  /*--------------------展示添加账单的弹窗-------------------*/
   showBillPopup:function() {
     this.setData({
       showAddBill: true
@@ -125,131 +130,7 @@ Page({
       showAddBill: false
     });
   },
-  async onAddBillSuccess(event) {
-    wx.showToast({
-      title: '添加成功',
-      icon: 'success'
-    });
-    await this.loadBills();
-  },
-  async loadBills() {
-    try {
-      wx.showLoading({ title: '加载中...' });
-
-      const today = new Date();
-      const startDate = new Date(today.getFullYear(), today.getMonth(), today.getDate()).toISOString();
-      const endDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1).toISOString();
-
-      const result = await wx.cloud.callFunction({
-        name: 'getBills',
-        data: {
-          startDate,
-          endDate
-        }
-      });
-
-      wx.hideLoading();
-      if (result.result && result.result.data) {
-        const todayExpense = result.result.data
-          .filter(bill => bill.type === 'expense')
-          .reduce((total, bill) => total + Number(bill.amount), 0);
-
-        const todayIncome = result.result.data
-          .filter(bill => bill.type === 'income')
-          .reduce((total, bill) => total + Number(bill.amount), 0);
-
-        this.setData({
-          bills: result.result.data,
-          todayExpense: todayExpense.toFixed(2),
-          todayIncome: todayIncome.toFixed(2)
-        });
-      }
-    } catch (error) {
-      wx.hideLoading();
-      console.error('加载账单失败:', error);
-      wx.showToast({
-        title: '加载失败',
-        icon: 'error'
-      });
-    }
-  },
-  onLoad() {
-    this.initializeBudget();
-    this.loadBills();
-    const categories = Object.keys(this.data.categoryIconMap);
-    this.setData({
-      categoryList: categories,
-      expenseCategories: Object.keys(this.data.categoryIconMap),
-      currentCategoryIconMap: this.data.categoryIconMap
-    });
-    this.getCurrentMonthBills();
-  },
-  initializeBudget() {
-    const now = new Date();
-    const currentMonth = now.getMonth() + 1;
-    const currentYear = now.getFullYear();
-
-    wx.getStorage({
-      key: 'lastResetDate',
-      success: (res) => {
-        const lastReset = new Date(res.data);
-        if (lastReset.getMonth() + 1 !== currentMonth || lastReset.getFullYear() !== currentYear) {
-          this.resetBudget();
-        } else {
-          this.loadBudgetStatus();
-        }
-      },
-      fail: () => {
-        this.resetBudget();
-      }
-    });
-  },
-  resetBudget() {
-    wx.getStorage({
-      key: 'defaultBudget',
-      success: (res) => {
-        const defaultBudget = res.data || 5000; 
-        this.setData({
-          totalBudget: defaultBudget
-        }, () => {
-          this.calculateBudget();
-          this.saveBudgetStatus();
-        });
-        wx.setStorage({
-          key: 'lastResetDate',
-          data: new Date().toString()
-        });
-      }
-    });
-  },
-  loadBudgetStatus() {
-    wx.getStorage({
-      key: 'budgetStatus',
-      success: (res) => {
-        const { totalBudget } = res.data;
-        this.setData({
-          totalBudget
-        }, () => {
-          this.calculateBudget();
-        });
-      }
-    });
-  },
-  saveBudgetStatus() {
-    wx.setStorage({
-      key: 'budgetStatus',
-      data: {
-        totalBudget: this.data.totalBudget
-      }
-    });
-  },
-  updateUsedAmount(amount) {
-    const newUsedAmount = this.data.usedAmount + amount;
-    this.setData({
-      usedAmount: newUsedAmount
-    });
-    this.saveBudgetStatus();
-  },
+  //选种类
   showCategoryPicker() {
     this.setData({
       showCategoryPicker: true
@@ -329,6 +210,94 @@ Page({
       category: ''
     });
   },
+  //添加账单完成之后处理
+  async onAddBillSuccess(event) {
+    wx.showToast({
+      title: '添加成功',
+      icon: 'success'
+    });
+    await this.loadBills();
+  },
+  //每次添加完之后，和初始化时需要调用，更新账单
+  async loadBills() {
+    try {
+      wx.showLoading({ title: '加载中...' });
+
+      const today = new Date();
+      const startDate = new Date(today.getFullYear(), today.getMonth(), today.getDate()).toISOString();
+      const endDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1).toISOString();
+
+      const result = await wx.cloud.callFunction({
+        name: 'getBills',
+        data: {
+          startDate,
+          endDate
+        }
+      });
+
+      wx.hideLoading();
+      if (result.result && result.result.data) {
+        const todayExpense = result.result.data
+          .filter(bill => bill.type === 'expense')
+          .reduce((total, bill) => total + Number(bill.amount), 0);
+
+        const todayIncome = result.result.data
+          .filter(bill => bill.type === 'income')
+          .reduce((total, bill) => total + Number(bill.amount), 0);
+
+        this.setData({
+          bills: result.result.data,
+          todayExpense: todayExpense.toFixed(2),
+          todayIncome: todayIncome.toFixed(2)
+        });
+      }
+    } catch (error) {
+      wx.hideLoading();
+      console.error('加载账单失败:', error);
+      wx.showToast({
+        title: '加载失败',
+        icon: 'error'
+      });
+    }
+  },
+  /*------------页面初始时需要做什么---------------*/
+  onLoad() {
+    this.initializeBudget();
+    this.loadBills();
+    const categories = Object.keys(this.data.categoryIconMap);
+    this.setData({
+      categoryList: categories,
+      expenseCategories: Object.keys(this.data.categoryIconMap),
+      currentCategoryIconMap: this.data.categoryIconMap
+    });
+    this.getCurrentMonthBills();
+  },
+  /*------------预算处理--------------------------*/
+  initializeBudget() {
+    this.loadBudgetFromCloud();
+  },
+  //获取账单数据
+  async loadBudgetFromCloud() {
+    try {
+      const result = await wx.cloud.callFunction({
+        name: 'getBudget'
+      });
+
+      if (result.result.success) {
+        this.setData({
+          totalBudget: result.result.data.amount
+        }, () => {
+          this.calculateBudget();
+        });
+      }
+    } catch (error) {
+      console.error('获取预算失败:', error);
+      wx.showToast({
+        title: '获取预算失败',
+        icon: 'error'
+      });
+    }
+  },
   calculateBudgetColor(percentage) {
     const usedPercentage = 100 - percentage;
     if (usedPercentage >= 80) {
@@ -376,6 +345,7 @@ Page({
       });
     });
   },
+  //计算的是这月已经使用
   async getCurrentMonthBills() {
     try {
       const now = new Date();
@@ -415,7 +385,7 @@ Page({
       editable: true,
       placeholderText: '请输入预算金额',
       content: String(this.data.totalBudget),
-      success: (res) => {
+      success: async (res) => {
         if (res.confirm) {
           const newBudget = Number(res.content);
           if (isNaN(newBudget) || newBudget <= 0) {
@@ -425,17 +395,39 @@ Page({
             });
             return;
           }
-          this.setData({
-            totalBudget: newBudget
-          }, () => {
-            this.getCurrentMonthBills();
-            this.calculateBudget();
-            this.saveBudgetStatus();
-          });
+
+          try {
+            wx.showLoading({ title: '更新中...' });
+            const result = await wx.cloud.callFunction({
+              name: 'updateBudget',
+              data: { amount: newBudget }
+            });
+
+            if (result.result.success) {
+              this.setData({
+                totalBudget: newBudget
+              }, () => {
+                this.calculateBudget();
+                wx.showToast({
+                  title: '更新成功',
+                  icon: 'success'
+                });
+              });
+            }
+          } catch (error) {
+            console.error('更新预算失败:', error);
+            wx.showToast({
+              title: '更新失败',
+              icon: 'error'
+            });
+          } finally {
+            wx.hideLoading();
+          }
         }
       }
     });
   },
+  /*------------------删除账单------------------ */
   async onDeleteBill(event) {
     const { id } = event.currentTarget.dataset;
 
@@ -471,5 +463,23 @@ Page({
         icon: 'error'
       });
     }
+  },
+  /*-------------------展示账单详情页----------------- */
+  showBillDetail(event) {
+    const bill = event.currentTarget.dataset.bill;
+    // 格式化日期
+    const date = new Date(bill.date);
+    bill.dateFormatted = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')} ${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}`;
+    
+    this.setData({
+      showBillDetail: true,
+      currentBill: bill
+    });
+  },
+  onBillDetailClose() {
+    this.setData({
+      showBillDetail: false,
+      currentBill: null
+    });
   }
 });

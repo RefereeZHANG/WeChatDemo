@@ -1,6 +1,57 @@
-<!--logs.wxml-->
-<scroll-view class="scrollarea" scroll-y type="list">
-  <block wx:for="{{logs}}" wx:key="timeStamp" wx:for-item="log">
-    <view class="log-item">{{index + 1}}. {{log.date}}</view>
-  </block>
-</scroll-view>
+<view class="container">
+  <!-- 背景动画效果 -->
+  <view class="background-waves"></view>
+
+  <!-- Logo区域 -->
+  <view class="logo-container">
+    <image class="logo-image" src="/images/logo.png" mode="aspectFit"></image>
+    <view class="app-name">智能记账本</view>
+    <view class="app-slogan">让理财更简单，让生活更美好</view>
+  </view>
+
+  <!-- 功能特点展示 -->
+  <view class="features">
+    <view class="feature-item">
+      <van-icon name="chart-trending-o" size="48rpx" color="#424874"/>
+      <text>智能统计分析</text>
+    </view>
+    <view class="feature-item">
+      <van-icon name="shield-o" size="48rpx" color="#424874"/>
+      <text>数据安全保障</text>
+    </view>
+    <view class="feature-item">
+      <van-icon name="gift-o" size="48rpx" color="#424874"/>
+      <text>记账有奖励</text>
+    </view>
+  </view>
+
+  <!-- 登录按钮区域 -->
+  <view class="login-section">
+    <van-button 
+      custom-class="login-btn"
+      icon="wechat"
+      color="linear-gradient(to right, #424874, #535EA6)"
+      block
+      loading="{{ isLoading }}"
+      bind:click="handleGetUserProfile"
+    >
+      微信一键登录
+    </van-button>
+    
+    <view class="guest-login" bindtap="handleGuestLogin">
+      <text>先去体验</text>
+      <van-icon name="arrow" />
+    </view>
+  </view>
+
+  <!-- 底部信息 -->
+  <view class="footer">
+    <view class="privacy-policy">
+      登录即表示同意
+      <text class="link" bindtap="showPrivacyPolicy">用户协议</text>
+      和
+      <text class="link" bindtap="showPrivacyPolicy">隐私政策</text>
+    </view>
+    <view class="version">Version 1.0.0</view>
+  </view>
+</view> 
