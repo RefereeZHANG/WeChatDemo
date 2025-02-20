@@ -1,7 +1,0 @@
-{
-    "usingComponents": {
-        "van-icon": "@vant/weapp/icon/index",
-        "van-popup": "@vant/weapp/popup/index",
-        "van-button": "@vant/weapp/button/index"
-    }
-}
