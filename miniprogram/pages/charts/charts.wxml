@@ -2,19 +2,39 @@
   <!-- 顶部标签页 -->
   <van-tabs 
     active="{{ currentTab }}" 
-    bind:change="onTabChange" 
-    bind:tap="handleTabTap"
+    bind:change="onTabChange"
     sticky>
     <van-tab title="月度概览">
       <!-- 月度预算环形图 -->
-      <view class="chart-section" catch:tap="handleChartTap">
-        <view class="chart-title">预算使用情况</view>
+      <view class="chart-section">
+        <view class="chart-title">本月收支概览</view>
+        <view class="monthly-overview">
+          <view class="overview-item">
+            <text class="label">收入</text>
+            <text class="value income">¥{{ monthlyStats.totalIncome }}</text>
+          </view>
+          <view class="overview-item">
+            <text class="label">支出</text>
+            <text class="value expense">¥{{ monthlyStats.totalExpense }}</text>
+          </view>
+          <view class="overview-item">
+            <text class="label">结余</text>
+            <text class="value {{ monthlyStats.balance >= 0 ? 'income' : 'expense' }}">
+              ¥{{ monthlyStats.balance }}
+            </text>
+          </view>
+        </view>
+      </view>
+
+      <!-- 预算使用情况 -->
+      <view class="chart-section">
+        <view class="chart-title">支出预算使用情况</view>
         <view class="budget-ring">
           <van-circle
-            value="{{ 60 }}"
+            value="{{ budget.percentage }}"
             color="#424874"
             layer-color="#DCD6F7"
-            text="已使用\n60%"
+            text="已使用\n{{ budget.percentage }}%"
             text-color="#424874"
             stroke-width="8"
             size="200"
@@ -23,28 +43,31 @@
         <view class="budget-info">
           <view class="info-item">
             <text class="label">总预算</text>
-            <text class="value">¥5000</text>
+            <text class="value">¥{{ budget.total }}</text>
           </view>
           <view class="info-item">
             <text class="label">已使用</text>
-            <text class="value">¥3000</text>
+            <text class="value">¥{{ budget.used }}</text>
           </view>
         </view>
       </view>
 
       <!-- 月度趋势卡片 -->
-      <view class="chart-section" catch:tap="handleChartTap">
-        <view class="chart-title">消费趋势</view>
+      <view class="chart-section">
+        <view class="chart-title">支出趋势</view>
         <view class="trend-cards">
           <view class="trend-card">
             <text class="label">环比变化</text>
-            <text class="value decrease">-10%</text>
-            <text class="desc">较上月减少</text>
+            <text class="value {{ monthlyStats.monthOverMonth >= 0 ? 'increase' : 'decrease' }}">
+              {{ monthlyStats.monthOverMonth }}%
+            </text>
+            <text class="desc">较上月{{ monthlyStats.monthOverMonth >= 0 ? '增加' : '减少' }}</text>
           </view>
           <view class="trend-card">
-            <text class="label">日均消费</text>
-            <text class="value">¥108</text>
-            <text class="desc">本月平均</text>
+            <text class="label">日均支出</text>
+            <text class="value">¥{{ monthlyStats.dailyAverageExpense }}</text>
+            <text class="desc">日均收入</text>
+            <text class="value">¥{{ monthlyStats.dailyAverageIncome }}</text>
           </view>
         </view>
       </view>
@@ -55,7 +78,12 @@
       <view class="chart-section" catch:tap="handleChartTap">
         <view class="chart-title">支出分布</view>
         <view class="pie-container">
-          <!-- 这里需要集成图表组件 -->
+          <ec-canvas 
+            id="mychart-dom-pie"
+            canvas-id="mychart-pie"
+            ec="{{ ec }}"
+            force-use-old-canvas="true"
+          ></ec-canvas>
         </view>
         <!-- 分类列表 -->
         <view class="category-list">
@@ -71,21 +99,25 @@
     </van-tab>
 
     <van-tab title="收支趋势">
-      <!-- 趋势图表 -->
-      <view class="chart-section" catch:tap="handleChartTap">
+      <view class="chart-section">
         <view class="chart-title">收支走势</view>
         <view class="trend-chart">
-          <!-- 这里需要集成图表组件 -->
+          <ec-canvas 
+            id="mychart-dom-trend"
+            canvas-id="mychart-trend"
+            ec="{{ trendEc }}"
+            force-use-old-canvas="true"
+          ></ec-canvas>
         </view>
         <!-- 数据摘要 -->
         <view class="trend-summary">
           <view class="summary-item">
             <text class="label">月度收入</text>
-            <text class="value income">¥6000</text>
+            <text class="value income">¥{{ monthlyStats.totalIncome }}</text>
           </view>
           <view class="summary-item">
             <text class="label">月度支出</text>
-            <text class="value expense">¥3000</text>
+            <text class="value expense">¥{{ monthlyStats.totalExpense }}</text>
           </view>
         </view>
       </view>

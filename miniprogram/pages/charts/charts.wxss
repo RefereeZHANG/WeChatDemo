@@ -1,40 +1,54 @@
 page {
   background-color: #F4EEFF;
+  height: 100%;
 }
 
 .container {
-  padding-bottom: 120rpx;
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  padding-bottom: 120rpx; /* 添加底部padding，防止内容被遮挡 */
+  box-sizing: border-box;
 }
 
-/* Tab样式 */
+/* Tab样式优化 */
 .van-tabs__wrap {
   background: #FFFFFF !important;
   border-radius: 24rpx 24rpx 0 0 !important;
   margin: 20rpx 20rpx 0 !important;
 }
 
-.van-tab {
-  color: #A6B1E1 !important;
-  font-size: 28rpx !important;
+.van-tabs__content {
+  padding-bottom: 40rpx; /* 为标签页内容添加底部间距 */
 }
 
-.van-tab--active {
-  color: #424874 !important;
-  font-weight: bold !important;
-}
-
-.van-tabs__line {
-  background-color: #424874 !important;
-  height: 4rpx !important;
-}
-
-/* 图表区域 */
+/* 图表区域样式优化 */
 .chart-section {
   background: #FFFFFF;
   border-radius: 24rpx;
   margin: 20rpx;
   padding: 30rpx;
   box-shadow: 0 2rpx 10rpx rgba(166, 177, 225, 0.2);
+}
+
+/* 月度概览样式优化 */
+.monthly-overview {
+  display: flex;
+  justify-content: space-between;
+  padding: 20rpx 0;
+  margin-bottom: 20rpx; /* 添加底部间距 */
+}
+
+/* 趋势卡片样式优化 */
+.trend-cards {
+  display: flex;
+  gap: 20rpx;
+  margin-bottom: 20rpx; /* 添加底部间距 */
+}
+
+/* 确保最后一个section没有底部margin */
+.chart-section:last-child {
+  margin-bottom: 0;
 }
 
 .chart-title {
@@ -76,12 +90,6 @@ page {
   font-weight: bold;
 }
 
-/* 趋势卡片 */
-.trend-cards {
-  display: flex;
-  gap: 20rpx;
-}
-
 .trend-card {
   flex: 1;
   background: #F4EEFF;
@@ -112,15 +120,21 @@ page {
 
 /* 分类列表 */
 .category-list {
-  margin-top: 30rpx;
+  margin-top: 20rpx;
+  max-height: calc(100vh - 600rpx);
+  overflow-y: auto;
 }
 
 .category-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20rpx 0;
+  padding: 16rpx 0;
   border-bottom: 1rpx solid #DCD6F7;
+}
+
+.category-item:last-child {
+  border-bottom: none;
 }
 
 .category-info {
@@ -181,9 +195,73 @@ page {
 
 /* 添加切换动画 */
 .chart-container {
-  transition: opacity 0.2s ease-in-out;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .expense-type-switch {
   transition: all 0.2s ease-in-out;
+}
+
+.overview-item {
+  flex: 1;
+  text-align: center;
+  padding: 0 20rpx;
+}
+
+.overview-item:not(:last-child) {
+  border-right: 1rpx solid #DCD6F7;
+}
+
+.overview-item .label {
+  font-size: 26rpx;
+  color: #A6B1E1;
+  display: block;
+  margin-bottom: 10rpx;
+}
+
+.overview-item .value {
+  font-size: 36rpx;
+  font-weight: bold;
+  display: block;
+}
+
+.value.income {
+  color: #4CAF50;
+}
+
+.value.expense {
+  color: #FF6B6B;
+}
+
+.value.increase {
+  color: #FF6B6B;
+}
+
+.value.decrease {
+  color: #4CAF50;
+}
+
+.pie-container {
+  width: 100%;
+  height: 400rpx;
+  position: relative;
+  margin: 20rpx 0;
+}
+
+ec-canvas {
+  width: 100%;
+  height: 100%;
+}
+
+.trend-chart {
+  width: 100%;
+  height: 400rpx;
+  position: relative;
+  margin: 20rpx 0;
 } 

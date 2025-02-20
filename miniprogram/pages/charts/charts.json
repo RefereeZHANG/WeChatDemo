@@ -1,4 +1,8 @@
 {
     "usingComponents": {
+      "van-tab": "@vant/weapp/tab/index",
+      "van-tabs": "@vant/weapp/tabs/index",
+      "van-circle": "@vant/weapp/circle/index",
+      "ec-canvas": "../../components/ec-canvas/ec-canvas"
     }
   }
